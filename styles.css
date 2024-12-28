@@ -1,0 +1,489 @@
+body {
+    font-family: 'Lato', 'Tahoma', sans-serif;
+    background-color: #eee;
+    display: flex;
+    justify-content: space-between;;
+    padding: 20px;
+    margin: 0;
+}
+
+h1 {
+    font-family: 'Lato', 'Tahoma', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+}
+h2 {
+    font-family: 'Lato', 'Tahoma', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* ---------------- */
+/* HEADER STYLING */
+/* ---------------- */
+
+#header, #footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: navy;
+    color: whitesmoke;
+    width: 100%;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+#footer {
+    margin: 0px;
+    margin-top: 20px;
+    display: flex;
+    height: 50px;
+}
+
+/* --------------- */
+/* SIDEBAR STYLING */
+/* --------------- */
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 250px;
+    background-color: #333;
+    color: whitesmoke;
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 99%;
+    overflow: hidden;
+    z-index: 10;
+    transition: transform 0.3s ease;
+}
+
+#player-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 10px;
+    overflow: hidden;
+}
+
+#available-players,
+#unavailable-players {
+    flex: 1;
+    overflow-y: auto;
+    background-color: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.section-header {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.available {
+    background-color: #181;
+    opacity: 0.9;
+}
+.unavailable {
+    background-color: #c33;
+    opacity: 0.75;
+}
+
+/* Targeting player-info directly, not #player-list */
+.player-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 2px 0px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.player-name {
+    margin-right: auto;
+}
+.player-info .player-actions {
+    margin-left: auto;
+}
+
+.player-info .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+    cursor: pointer;
+    margin: 0px;
+    margin-right: 5px;
+}
+
+.player-info .icon:hover {
+    background-color: #ccc;
+}
+
+.icon-edit {
+    opacity: 0.5;
+}
+.player-info .icon-x {
+    color: #c33;
+}
+.player-info .icon-check {
+    color: #1a1;
+}
+
+#mark-all-available,
+#mark-all-unavailable {
+    background-color: navy;
+    color: whitesmoke;
+    margin: 10px 0;
+    padding: 5px 10px;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 49%
+}
+
+#save-availability, #add-player-button{
+    background-color: navy;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    width: 100%;
+    margin: 5px 0;
+}
+#add-player-button{
+    padding: 4px;
+    margin: 0;
+}
+#add-player-button:hover {
+    background-color: whitesmoke;
+    color: navy;
+}
+
+#save-availability:hover {
+    background-color: whitesmoke;
+    color: navy;
+}
+
+#mark-all-available:hover {
+    background-color: #181;
+    border: #181;
+}
+
+#mark-all-unavailable:hover {
+    background-color: #c33;
+    border: #c33
+}
+
+#cancel-add-player, #save-player-button {
+    color: black;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    opacity: 0.8;
+}
+#cancel-add-player:hover {
+    background-color: red;
+    color: whitesmoke;
+    opacity: 1;
+}
+#save-player-button:hover {
+    opacity: 1;
+}
+
+/* ----- */
+/* MODAL */
+/* ----- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: navy;
+    border: black 5px solid;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: -content;
+}
+
+.modal-content div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#player-positions {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content input,
+.modal-content select {
+    flex: 1;
+}
+
+.checkbox-item label {
+    width: max-content;
+    margin-right: 10px;
+}
+
+checkbox-group {
+    display: flex;
+    flex-direction: column;
+    /* Arrange items in a column */
+    gap: 10px;
+    /* Add spacing between each checkbox item */
+    margin-top: 10px;
+}
+
+#player-positions {
+    float: right;
+}
+
+.checkbox-item {
+    display: flex;
+    margin: 0px;
+    justify-self: right;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: navy;
+    margin: 0;
+}
+
+/* Additional hover or focus effects (optional) */
+.checkbox-item input[type="checkbox"]:hover {
+    border-color: lightblue;
+}
+
+.checkbox-item input[type="checkbox"]:focus {
+    outline: 2px solid lightblue;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin: 0px;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+/* ----------------- */
+/* MAIN BODY STYLING */
+/* ----------------- */
+#content {
+    position: fixed;
+    top: 0;
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    max-width: max-content;
+}
+
+#select-squad {
+    margin-left: 20px;
+}
+
+/* Container for all rows */
+#position-select {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    margin: 0px;
+    width: 100%;
+    /* max-width: 800px; */
+}
+
+/* General styles for rows */
+.position-row {
+    display: flex;
+    gap: 5px;
+}
+
+/* General styles for position cells */
+.position-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 160px;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.row-1 {padding-left: 10%;}
+.row-2 {padding-left: 0%;}
+.row-3 {padding-left: 24%;}
+.row-4 {padding-left: 0%; margin-top: -10px;}
+.row-5 {padding-left: 15%; margin-top: -10px;}
+.row-6 {padding-left: 30%; margin-top: -10px;}
+.row-7 {padding-left: 0%; margin-top: -10px;}
+.row-8 {padding-left: 40%; margin-top: -10px;}
+
+
+.position-cell:empty {
+    visibility: hidden;
+}
+
+.position-cell label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+.position-cell select {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    background-color: lightgray;
+}
+
+/* Style for select dropdown when a player is selected */
+.position-cell .select-selected {
+    background-color: navy;
+    border-color: black;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.position-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.position-number {
+    font-family: 'Lato', 'Tahoma', sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    color: navy;
+}
+
+.position-label {
+    font-size: 14px;
+    color: #0008;
+    margin-top: 15px;
+}
+
+#replacements {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;   
+}
+
+.replacements-row {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 16px;
+    margin-left: 20px;
+}
+
+.replacement-cell {
+    display: flex;
+    flex-direction: row;
+}
+
+.replacement-number {
+    font-size: 40px;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+.replacement-cell select {
+    padding: 5px;
+    margin: 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 160px;
+    text-align: center;
+    align-self: center;
+    background-color: lightgray;
+}
+
+.replacement-cell .select-selected {
+    background-color: black;
+    border-color: whitesmoke;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+/* ---------------------- */ 
+/* ACTION BUTTONS STYLING */
+/* ---------------------- */
+#actions {
+    text-align: left;
+}
+
+#actions button {
+    background-color: whitesmoke;
+    color: navy;
+    padding: 10px 15px;
+    border: 4px solid navy;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#actions button:hover {
+    background-color: navy;
+    color: whitesmoke;
+}

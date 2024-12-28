@@ -1,0 +1,648 @@
+[
+  {
+    "name": "Ali Moffatt",
+    "position": [
+      "Centre",
+      "Wing"
+    ],
+    "available": true
+  },
+  {
+    "name": "Ben Beard",
+    "position": [
+      "Wing"
+    ],
+    "available": true
+  },
+  {
+    "name": "Ben Pellett",
+    "position": [
+      "Prop"
+    ],
+    "available": true
+  },
+  {
+    "name": "Ben Tottman",
+    "position": [
+      "Hooker",
+      "Prop"
+    ],
+    "available": true
+  },
+  {
+    "name": "Chris May-Miller",
+    "position": [
+      "Centre"
+    ],
+    "available": false
+  },
+  {
+    "name": "Chris Taylor",
+    "position": [
+      "Wing",
+      "Fly Half",
+      "Scrum Half"
+    ],
+    "available": false
+  },
+  {
+    "name": "Connor Leggat",
+    "position": [
+      "Number 8",
+      "Prop"
+    ],
+    "available": true
+  },
+  {
+    "name": "Daan Hulst",
+    "position": [
+      "Second Row",
+      "Number 8",
+      "Flanker"
+    ],
+    "available": false
+  },
+  {
+    "name": "Dan Billin",
+    "position": [
+      "Second Row",
+      "Number 8",
+      "Flanker",
+      "Centre"
+    ],
+    "available": true
+  },
+  {
+    "name": "Dan Poulton",
+    "position": [
+      "Fly Half"
+    ],
+    "available": false
+  },
+  {
+    "name": "Dave Bridges",
+    "position": [
+      "Prop",
+      "Second Row",
+      "Flanker"
+    ],
+    "available": true
+  },
+  {
+    "name": "Duncan Fraser",
+    "position": [
+      "Full Back",
+      "Wing"
+    ],
+    "available": false
+  },
+  {
+    "name": "George Beet",
+    "position": [
+      "Hooker"
+    ],
+    "available": true
+  },
+  {
+    "name": "Guy Collins",
+    "position": [
+      "Prop",
+      "Second Row",
+      "Flanker"
+    ],
+    "available": true
+  },
+  {
+    "name": "Harrison Berry",
+    "position": [
+      "Flanker",
+      "Hooker"
+    ],
+    "available": true
+  },
+  {
+    "name": "Jack Billin",
+    "position": [
+      "Scrum Half"
+    ],
+    "available": true
+  },
+  {
+    "name": "Jake Radcliffe",
+    "position": [
+      "Wing",
+      "Full Back"
+    ],
+    "available": true
+  },
+  {
+    "name": "James Funnell",
+    "position": [
+      "Prop"
+    ],
+    "available": false
+  },
+  {
+    "name": "John Peaty",
+    "position": [
+      "Second Row",
+      "Flanker"
+    ],
+    "available": true
+  },
+  {
+    "name": "Josh Brimecombe",
+    "position": [
+      "Prop"
+    ],
+    "available": true
+  },
+  {
+    "name": "Josh Weaver",
+    "position": [
+      "Flanker"
+    ],
+    "available": false
+  },
+  {
+    "name": "Luke Maker",
+    "position": [
+      "Full Back",
+      "Fly Half",
+      "Centre",
+      "Wing"
+    ],
+    "available": true
+  },
+  {
+    "name": "Mark Lewis",
+    "position": [
+      "Scrum Half",
+      "Fly Half"
+    ],
+    "available": false
+  },
+  {
+    "name": "Max Crawley-Moore",
+    "position": [
+      "Centre"
+    ],
+    "available": true
+  },
+  {
+    "name": "Max Morgan",
+    "position": [
+      "Flanker"
+    ],
+    "available": false
+  },
+  {
+    "name": "Noah Roberts",
+    "position": [
+      "Fly Half",
+      "Scrum Half",
+      "Full Back"
+    ],
+    "available": true
+  },
+  {
+    "name": "Oli Billin",
+    "position": [
+      "Fly Half",
+      "Full Back"
+    ],
+    "available": true
+  },
+  {
+    "name": "Ollie Toogood",
+    "position": [
+      "Second Row",
+      "Number 8",
+      "Flanker"
+    ],
+    "available": false
+  },
+  {
+    "name": "Or Shay",
+    "position": [
+      "Prop",
+      "Second Row",
+      "Number 8"
+    ],
+    "available": false
+  },
+  {
+    "name": "Oscar Staples",
+    "position": [
+      "Flanker",
+      "Second Row"
+    ],
+    "available": false
+  },
+  {
+    "name": "Pete Morley",
+    "position": [
+      "Second Row"
+    ],
+    "available": false
+  },
+  {
+    "name": "Rhys Skinner",
+    "position": [
+      "Full Back",
+      "Centre"
+    ],
+    "available": false
+  },
+  {
+    "name": "Rory Evans",
+    "position": [
+      "Flanker"
+    ],
+    "available": false
+  },
+  {
+    "name": "Ryland Thomas",
+    "position": [
+      "Flanker"
+    ],
+    "available": true
+  },
+  {
+    "name": "Sam Lindsay-McCall",
+    "position": [
+      "Second Row"
+    ],
+    "available": true
+  },
+  {
+    "name": "Sam Spriddell",
+    "position": [
+      "Scrum Half",
+      "Full Back"
+    ],
+    "available": true
+  },
+  {
+    "name": "Ted Hardisty",
+    "position": [
+      "Wing",
+      "Centre",
+      "Full Back"
+    ],
+    "available": true
+  },
+  {
+    "name": "Tim Morris",
+    "position": [
+      "Second Row",
+      "Flanker"
+    ],
+    "available": false
+  },
+  {
+    "name": "Tom Mooney",
+    "position": [
+      "Flanker",
+      "Second Row"
+    ],
+    "available": true
+  },
+  {
+    "name": "Will Roberts",
+    "position": [
+      "Wing",
+      "Full Back"
+    ],
+    "available": true
+  },
+      {
+        "name": "Dougie Anson-Gates",
+        "position": [
+          "Centre"
+        ],
+        "available": null
+      },
+      {
+        "name": "Dan Arnold",
+        "position": [
+          "Flanker"
+        ],
+        "available": null
+      },
+      {
+        "name": "Gareth Arthur",
+        "position": [
+          "Second Row"
+        ],
+        "available": null
+      },
+      {
+        "name": "Digby Blake",
+        "position": [
+          "Wing"
+        ],
+        "available": null
+      },
+      {
+        "name": "Aaron Boczek",
+        "position": [
+          "Number 8"
+        ],
+        "available": null
+      },
+      {
+        "name": "Dillan Bowe",
+        "position": [
+          "Wing"
+        ],
+        "available": null
+      },
+      {
+        "name": "Greg Brack",
+        "position": [
+          "Second Row"
+        ],
+        "available": null
+      },
+      {
+        "name": "Will Bramwell",
+        "position": [
+          "Second Row"
+        ],
+        "available": null
+      },
+      {
+        "name": "Joe Bull",
+        "position": [
+          "Second Row"
+        ],
+        "available": null
+      },
+      {
+        "name": "Morgan Burger",
+        "position": [
+          "Flanker"
+        ],
+        "available": null
+      },
+      {
+        "name": "Tom Byron",
+        "position": [
+          "Flanker"
+        ],
+        "available": null
+      },
+      {
+        "name": "Kit Clarke",
+        "position": [
+          "Scrum Half"
+        ],
+        "available": null
+      },
+      {
+        "name": "Billy Davis",
+        "position": [
+          "Prop"
+        ],
+        "available": null
+      },
+      {
+        "name": "Fin Fisher",
+        "position": [
+          "Fly Half"
+        ],
+        "available": null
+      },
+      {
+        "name": "Ryan Foster",
+        "position": [
+          "Centre"
+        ],
+        "available": null
+      },
+      {
+        "name": "James Funnell",
+        "position": [
+          "Prop"
+        ],
+        "available": null
+      },
+      {
+        "name": "Colm Geraghty",
+        "position": [
+          "Centre"
+        ],
+        "available": null
+      },
+      {
+        "name": "Evan Gosling",
+        "position": [
+          "Flanker"
+        ],
+        "available": null
+      },
+      {
+        "name": "Benny Gray",
+        "position": [
+          "Full Back"
+        ],
+        "available": null
+      },
+      {
+        "name": "Ben Green",
+        "position": [
+          "Wing"
+        ],
+        "available": null
+      },
+      {
+        "name": "James Griffiths",
+        "position": [
+          "Flanker"
+        ],
+        "available": null
+      },
+      {
+        "name": "Dylan Hammocks",
+        "position": [
+          "Flanker"
+        ],
+        "available": null
+      },
+      {
+        "name": "Reggie Harris",
+        "position": [
+          "Prop"
+        ],
+        "available": null
+      },
+      {
+        "name": "Jack Jackob",
+        "position": [
+          "Hooker"
+        ],
+        "available": null
+      },
+      {
+        "name": "Jules Jardim",
+        "position": [
+          "Second Row"
+        ],
+        "available": null
+      },
+      {
+        "name": "James Jenkins",
+        "position": [
+          "Full Back"
+        ],
+        "available": null
+      },
+      {
+        "name": "Ollie Johnston",
+        "position": [
+          "Wing"
+        ],
+        "available": null
+      },
+      {
+        "name": "Sam Johnston",
+        "position": [
+          "Fly Half"
+        ],
+        "available": null
+      },
+      {
+        "name": "George Jones",
+        "position": [
+          "Prop"
+        ],
+        "available": null
+      },
+      {
+        "name": "Owen Jones",
+        "position": [
+          "Wing"
+        ],
+        "available": null
+      },
+      {
+        "name": "Stan Kennett",
+        "position": [
+          "Full Back"
+        ],
+        "available": null
+      },
+      {
+        "name": "Mark Lewis",
+        "position": [
+          "Scrum Half"
+        ],
+        "available": null
+      },
+      {
+        "name": "Jonny Martin",
+        "position": [
+          "Wing"
+        ],
+        "available": null
+      },
+      {
+        "name": "Elliott Martin-Drew",
+        "position": [
+          "Scrum Half"
+        ],
+        "available": null
+      },
+      {
+        "name": "Sam McCarthy",
+        "position": [
+          "Flanker"
+        ],
+        "available": null
+      },
+      {
+        "name": "Sean Morgan",
+        "position": [
+          "Prop"
+        ],
+        "available": null
+      },
+      {
+        "name": "Ryan Morlen",
+        "position": [
+          "Centre"
+        ],
+        "available": null
+      },
+      {
+        "name": "Tommy Nasta",
+        "position": [
+          "Flanker"
+        ],
+        "available": null
+      },
+      {
+        "name": "George Naylor",
+        "position": [
+          "Prop"
+        ],
+        "available": null
+      },
+      {
+        "name": "Nathan Oliver",
+        "position": [
+          "Number 8"
+        ],
+        "available": null
+      },
+      {
+        "name": "Michael Presland",
+        "position": [
+          "Second Row"
+        ],
+        "available": null
+      },
+      {
+        "name": "Charlie Pullen",
+        "position": [
+          "Number 8"
+        ],
+        "available": null
+      },
+      {
+        "name": "Rob Salvi",
+        "position": [
+          "Prop"
+        ],
+        "available": null
+      },
+      {
+        "name": "Sachio Shimizu",
+        "position": [
+          "Flanker"
+        ],
+        "available": null
+      },
+      {
+        "name": "Patrick Thomson",
+        "position": [
+          "Wing"
+        ],
+        "available": null
+      },
+      {
+        "name": "Lukis Waite",
+        "position": [
+          "Scrum Half"
+        ],
+        "available": null
+      },
+      {
+        "name": "Ben Watkinson",
+        "position": [
+          "Number 8"
+        ],
+        "available": null
+      }
+]

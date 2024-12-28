@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squad Selection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <!-- Link to FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar">
+            <button id="add-player-button">Add New Player</button>
+            <div class="button-group">
+                <button id="mark-all-available">Mark All Available</button>
+                <button id="mark-all-unavailable">Mark All Unavailable</button>
+            </div>
+            <div id="add-player-modal" class="modal hidden">
+                <!-- Modal for adding new player -->
+                <div class="modal-content">
+                    <h2 style="margin-bottom:10px">Add New Player</h2>
+                    <!-- Name -->
+                    <div>
+                        <label for="player-name">Name:</label>
+                        <input type="text" id="player-name" />
+                    </div>
+                    <!-- Position -->
+                    <div>
+                        <label for="player-positions">Position:</label>
+                        <div id="player-positions">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="position-prop" value="Prop">
+                                <label for="position-prop">Prop</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="position-hooker" value="Hooker">
+                                <label for="position-hooker">Hooker</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="position-lock" value="Lock">
+                                <label for="position-lock">Lock</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="position-flanker" value="Flanker">
+                                <label for="position-flanker">Flanker</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="position-number8" value="Number 8">
+                                <label for="position-number8">Number 8</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="position-scrumhalf" value="Scrumhalf">
+                                <label for="position-scrumhalf">Scrumhalf</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="position-flyhalf" value="Flyhalf">
+                                <label for="position-flyhalf">Flyhalf</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="position-center" value="Center">
+                                <label for="position-center">Center</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="position-wing" value="Wing">
+                                <label for="position-wing">Wing</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="position-fullback" value="Fullback">
+                                <label for="position-fullback">Fullback</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Availability -->
+                    <div>
+                        <label for="player-availability">Available:</label>
+                        <input type="checkbox" id="player-availability" />
+                    </div>
+                    <!-- Buttons -->
+                    <div class="button-group">
+                        <button id="save-player-button">Save</button>
+                        <button id="cancel-add-player">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="player-container">
+                <!-- Scrollable Available Players Section -->
+                <div class="section-header">Available</div>
+                <div id="available-players">
+                    <!-- Player list for available players will be dynamically added here -->
+                </div>
+                <!-- Scrollable Unavailable Players Section -->
+                <div class="section-header">Unavailable</div>
+                <div id="unavailable-players">
+                    <!-- Player list for unavailable players will be dynamically added here -->
+                </div>
+            </div>
+            <button id="save-availability"></i>Save Availability</button>
+        </div>
+
+        <div id="content">
+            <div id="header">
+                <h1>Starting Lineup</h1>
+                <div id="actions">
+                    <button id="clear-selections">Clear Selections</button>
+                    <button id="save-selection">Save Selection</button>
+                    <button id="copy-to-clipboard">Copy to Clipboard</button>
+                </div>
+            </div>
+
+            <div id="select-squad">
+                <div id="position-select"></div>
+            </div>
+            <div id="footer">
+                <div id="replacements">
+                    <h2>Replacements</h2>
+                    <div id="replacements-select"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
