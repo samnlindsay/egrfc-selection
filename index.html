@@ -14,10 +14,9 @@
 <body>
     <div id="app">
         <div id="sidebar">
-            <button id="add-player-button">Add New Player</button>
             <div class="button-group">
-                <button id="mark-all-available">Mark All Available</button>
-                <button id="mark-all-unavailable">Mark All Unavailable</button>
+                <button id="save-availability"></i>Save Availability</button>
+                <button id="clear-all">Clear All</button>
             </div>
             <div id="add-player-modal" class="modal hidden">
                 <!-- Modal for adding new player -->
@@ -88,18 +87,33 @@
             </div>
 
             <div id="player-container">
-                <!-- Scrollable Available Players Section -->
-                <div class="section-header">Available</div>
-                <div id="available-players">
-                    <!-- Player list for available players will be dynamically added here -->
+                <div class="collapsible-section" id="available-section">
+                    <div class="collapsible-header" onclick="toggleSection('available')">
+                        <span class="triangle-icon">&#9654;</span> Available</div>
+                    <div class="collapsible-content" id="available">
+                        <!-- List of available players -->
+                    </div>
                 </div>
-                <!-- Scrollable Unavailable Players Section -->
-                <div class="section-header">Unavailable</div>
-                <div id="unavailable-players">
-                    <!-- Player list for unavailable players will be dynamically added here -->
+
+                <div class="collapsible-section" id="unavailable-section">
+                    <div class="collapsible-header" onclick="toggleSection('unavailable')">
+                        <span class="triangle-icon">&#9654;</span> Unavailable</div>
+                    <div class="collapsible-content" id="unavailable">
+                        <!-- List of unavailable players -->
+                    </div>
+                </div>
+
+                <div class="collapsible-section" id="not-responded-section">
+                    <div class="collapsible-header" onclick="toggleSection('not-responded')">
+                        <span class="triangle-icon">&#9654;</span> Not Responded</div>
+                    <div class="collapsible-content" id="not-responded">
+                        <button id="mark-all-available">Mark All Available</button>
+                        <div id="not-responded-list"></div>
+                        <!-- List of players who have not responded -->
+                    </div>
                 </div>
             </div>
-            <button id="save-availability"></i>Save Availability</button>
+            <button id="add-player-button">Add New Player</button>
         </div>
 
         <div id="content">

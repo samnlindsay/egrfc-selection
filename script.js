@@ -29,10 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", markAllAvailable);
 
   document
-    .getElementById("mark-all-unavailable")
-    .addEventListener("click", markAllUnavailable);
-
-  document
     .getElementById("add-player-button")
     .addEventListener("click", () => {
       document.getElementById("add-player-modal").classList.remove("hidden");
@@ -149,6 +145,22 @@ function editPlayer(index) {
     renderPositionSelect();
   }
 }
+
+function toggleSection(sectionId) {
+  var section = document.getElementById(sectionId);
+  var triangleIcon =
+    section.previousElementSibling.querySelector(".triangle-icon");
+
+  // Toggle visibility of the section
+  if (section.style.display === "none" || section.style.display === "") {
+    section.style.display = "block";
+    triangleIcon.classList.add("rotate");
+  } else {
+    section.style.display = "none";
+    triangleIcon.classList.remove("rotate");
+  }
+}
+
 
 
 // Load players from the JSON file
@@ -373,11 +385,13 @@ function renderPlayerList() {
   // Sort players alphabetically by name
   players.sort((a, b) => a.name.localeCompare(b.name));
 
-  const availablePlayersDiv = document.getElementById("available-players");
-  const unavailablePlayersDiv = document.getElementById("unavailable-players");
+  const availablePlayersDiv = document.getElementById("available");
+  const unavailablePlayersDiv = document.getElementById("unavailable");
+  const notRespondedPlayersDiv = document.getElementById("not-responded-list");
 
   availablePlayersDiv.innerHTML = "";
   unavailablePlayersDiv.innerHTML = "";
+  notRespondedPlayersDiv.innerHTML = "";
 
   players.forEach((player, index) => {
     const playerDiv = document.createElement("div");
@@ -385,23 +399,22 @@ function renderPlayerList() {
       player.available ? "available" : "unavailable"
     }`;
 
+    const no = `<button class="icon icon-x" title="Mark unavailable" onclick="toggleAvailability(${index}, false)"><i class="fas fa-times"></i></button>`;
+    const yes = `<button class="icon icon-check" title="Mark available" onclick="toggleAvailability(${index}, true)"><i class="fas fa-check"></i></button>`;
+    const clear = `<button class="icon icon-trash" title="Clear availability" onclick="toggleAvailability(${index}, null)"><i class="fas fa-trash"></i></button>`;
+
     playerDiv.innerHTML = `
-      <div class="player-info">
         <button class="icon icon-edit" title="Edit player info" onclick="editPlayer(${index})">
             <i class="fas fa-pencil-alt"></i>
         </button>
         <span class="player-name">${player.name}</span>
-        <button class="icon ${player.available ? "icon-x" : "icon-check"}" 
-          title="${player.available ? "Mark unavailable" : "Mark available"}" 
-          onclick="toggleAvailability(${index})">
-            <i class="${
-              player.available ? "fas fa-times" : "fas fa-check"
-            }"></i>
-        </button>
-    </div>
+        ${player.available === null ? yes : player.available ? no : yes}
+        ${player.available === null ? no : clear}
     `;
 
-    if (player.available) {
+    if (player.available === null) {
+      notRespondedPlayersDiv.appendChild(playerDiv);
+    } else if (player.available) {
       availablePlayersDiv.appendChild(playerDiv);
     } else {
       unavailablePlayersDiv.appendChild(playerDiv);
@@ -410,10 +423,9 @@ function renderPlayerList() {
 }
 
 
-
 // Toggle player availability and persist dropdown selections
-function toggleAvailability(index) {
-  playerAvailability[index] = !playerAvailability[index];
+function toggleAvailability(index, available) {
+  playerAvailability[index] = available; // Toggle to available
   players[index].available = playerAvailability[index]; // Keep in sync
 
   // Remove any invalid selections
@@ -429,23 +441,49 @@ function toggleAvailability(index) {
 
 
 function markAllAvailable() {
+  console.log("Marking all players as available...");
   players.forEach((_, index) => {
-    playerAvailability[index] = true; // Mark all as available
-    players[index].available = true; // Keep in sync
+    
+    if (players[index].available === null) {
+      toggleAvailability(index, true);
+    }
   });
   renderPlayerList(); // Re-render the UI
   renderPositionSelect(); // Update dropdowns
 }
 
-function markAllUnavailable() {
-  players.forEach((_, index) => {
-    playerAvailability[index] = false; // Mark all as unavailable
-    players[index].available = false; // Keep in sync
-  });
+// Function to clear all players' availability (set to null)
+document.getElementById("clear-all").addEventListener("click", function() {
+  // Loop through all players and set their availability to null (not responded)
+  for (let player of players) {
+    player.availability = null; // or players[playerId].availability = null;
+  }
+  updatePlayerList(); // Update the UI with the new availability state
+});
 
-  renderPlayerList();
-  renderPositionSelect();
+// Update the player list to reflect the changes
+function updatePlayerList() {
+  const availableList = document.getElementById("available");
+  const unavailableList = document.getElementById("unavailable");
+  const notRespondedList = document.getElementById("not-responded");
+
+  // Clear current lists
+  availableList.innerHTML = '';
+  unavailableList.innerHTML = '';
+  notRespondedList.innerHTML = '';
+
+  // Update lists based on player availability
+  for (let player of players) {
+    if (player.availability === true) {
+      availableList.innerHTML += `<div>${player.name}</div>`;
+    } else if (player.availability === false) {
+      unavailableList.innerHTML += `<div>${player.name}</div>`;
+    } else {
+      notRespondedList.innerHTML += `<div>${player.name}</div>`;
+    }
+  }
 }
+
 
 function saveAvailabilityToFile() {
   const updatedPlayers = players.map((player, index) => ({

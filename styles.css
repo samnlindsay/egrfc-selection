@@ -46,6 +46,7 @@ h2 {
 /* --------------- */
 /* SIDEBAR STYLING */
 /* --------------- */
+
 #sidebar {
     display: flex;
     flex-direction: column;
@@ -64,38 +65,62 @@ h2 {
     transition: transform 0.3s ease;
 }
 
+.collapsible-section {
+    background-color: #0000;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#available-section{
+    background-color: #181c;
+}
+#unavailable-section{
+    background-color: #c33c;
+}
+
+/* Add styling for collapsible section */
+.collapsible-header {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.triangle-icon {
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.collapsible-header .triangle-icon.rotate {
+    transform: rotate(90deg);
+}
+
+.collapsible-content {
+    display: none;
+}
+
 #player-container {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     gap: 10px;
     overflow: hidden;
+    overflow-y: auto;
 }
 
-#available-players,
-#unavailable-players {
+#available,
+#unavailable, 
+#not-responded {
     flex: 1;
     overflow-y: auto;
+    max-height: 400px;
     background-color: none;
     border-radius: 5px;
     padding: 5px;
 }
 
-.section-header {
-    font-size: 24px;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: center;
-}
 
-.available {
-    background-color: #181;
-    opacity: 0.9;
-}
-.unavailable {
-    background-color: #c33;
-    opacity: 0.75;
-}
 
 /* Targeting player-info directly, not #player-list */
 .player-info {
@@ -143,9 +168,11 @@ h2 {
 .player-info .icon-check {
     color: #1a1;
 }
+.player-info .icon-trash {
+    color: #ccc;
+}
 
-#mark-all-available,
-#mark-all-unavailable {
+#mark-all-available{
     background-color: navy;
     color: whitesmoke;
     margin: 10px 0;
@@ -154,10 +181,9 @@ h2 {
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
-    width: 49%
 }
 
-#save-availability, #add-player-button{
+#save-availability, #add-player-button, #clear-all {
     background-color: navy;
     color: whitesmoke;
     border: 2px solid whitesmoke;
@@ -165,9 +191,17 @@ h2 {
     padding: 10px;
     font-size: 14px;
     cursor: pointer;
-    width: 100%;
     margin: 5px 0;
+    margin-bottom: 10px;
 }
+
+#save-availability {
+    flex: 4;
+}
+#clear-all {
+    flex: 2;
+}
+
 #add-player-button{
     padding: 4px;
     margin: 0;
@@ -177,19 +211,9 @@ h2 {
     color: navy;
 }
 
-#save-availability:hover {
+#save-availability:hover, #clear-all:hover, #mark-all-available:hover {
     background-color: whitesmoke;
     color: navy;
-}
-
-#mark-all-available:hover {
-    background-color: #181;
-    border: #181;
-}
-
-#mark-all-unavailable:hover {
-    background-color: #c33;
-    border: #c33
 }
 
 #cancel-add-player, #save-player-button {
@@ -210,6 +234,7 @@ h2 {
 #save-player-button:hover {
     opacity: 1;
 }
+
 
 /* ----- */
 /* MODAL */
