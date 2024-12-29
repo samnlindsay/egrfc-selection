@@ -20,6 +20,7 @@ h2 {
     margin: 0;
 }
 
+
 /* ---------------- */
 /* HEADER STYLING */
 /* ---------------- */
@@ -52,23 +53,57 @@ h2 {
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    width: 250px;
+    width: 295px;
     background-color: #333;
     color: whitesmoke;
     padding: 10px;
     position: fixed;
     left: 0;
     top: 0;
-    height: 99%;
-    overflow: hidden;
+    height: 100vh;
     z-index: 10;
     transition: transform 0.3s ease;
+    box-sizing: border-box;
 }
 
 .collapsible-section {
     background-color: #0000;
     border: 1px solid #ccc;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    /* margin-bottom: 10px; */
+    max-height: fit-content;
+}
+
+.scrollable-container {
+    max-height: 100%;
+    /* Allow the container to take up the full height of its parent */
+    overflow-y: auto;
+    /* Enable scrolling if the content exceeds the height */
+}
+
+.collapsible-content {
+  display: none;
+  padding: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* When a section is expanded */
+.collapsible-content.show {
+  display: block;
+}
+
+/* Flex properties to ensure sections take up space based on expansion */
+.collapsible-section.expanded {
+  flex-grow: 1;
+}
+
+/* Add some spacing around the sections */
+#sidebar > .collapsible-section:last-child {
+  margin-bottom: 0;
 }
 
 #available-section{
@@ -78,12 +113,14 @@ h2 {
     background-color: #c33c;
 }
 
-/* Add styling for collapsible section */
 .collapsible-header {
     cursor: pointer;
     padding: 10px;
     font-size: 24px;
     font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .triangle-icon {
@@ -96,8 +133,15 @@ h2 {
     transform: rotate(90deg);
 }
 
-.collapsible-content {
-    display: none;
+.player-count {
+    font-size: 20px;
+    color: black;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 10px;
+    background-color: #fffa;   
+    padding: 5px;
+    border-radius: 20px;
+    border: 2px solid #000;
 }
 
 #player-container {
@@ -114,7 +158,6 @@ h2 {
 #not-responded {
     flex: 1;
     overflow-y: auto;
-    max-height: 400px;
     background-color: none;
     border-radius: 5px;
     padding: 5px;
@@ -203,15 +246,11 @@ h2 {
 }
 
 #add-player-button{
-    padding: 4px;
-    margin: 0;
-}
-#add-player-button:hover {
-    background-color: whitesmoke;
-    color: navy;
+    padding: 5px;
+    margin-top: 0;
 }
 
-#save-availability:hover, #clear-all:hover, #mark-all-available:hover {
+#save-availability:hover, #clear-all:hover, #mark-all-available:hover, #add-player-button:hover {
     background-color: whitesmoke;
     color: navy;
 }
@@ -347,8 +386,8 @@ button:hover {
 #content {
     position: fixed;
     top: 0;
-    margin-left: 250px;
-    width: calc(100% - 250px);
+    margin-left: 275px;
+    width: calc(100% - 275px);
     max-width: max-content;
 }
 

@@ -16,7 +16,6 @@ const positionMapping = {
 };
 
 
-
 // Load players from the JSON file
 document.addEventListener("DOMContentLoaded", () => {
   loadPlayers();
@@ -146,18 +145,53 @@ function editPlayer(index) {
   }
 }
 
+// Function to toggle the visibility of each section
 function toggleSection(sectionId) {
   var section = document.getElementById(sectionId);
-  var triangleIcon =
-    section.previousElementSibling.querySelector(".triangle-icon");
+  var triangleIcon = section.previousElementSibling.querySelector('.triangle-icon');
+  var sectionContainer = section.closest('.collapsible-section');
 
   // Toggle visibility of the section
   if (section.style.display === "none" || section.style.display === "") {
     section.style.display = "block";
-    triangleIcon.classList.add("rotate");
+    triangleIcon.classList.add('rotate');
+    
+    // If expanded, adjust the height of the sections
+    sectionContainer.classList.add('expanded');
   } else {
     section.style.display = "none";
-    triangleIcon.classList.remove("rotate");
+    triangleIcon.classList.remove('rotate');
+    
+    // Collapse the section
+    sectionContainer.classList.remove('expanded');
+  }
+}
+
+// Call the function initially to ensure sections are properly sized
+adjustSidebarHeight();
+
+// Function to adjust sidebar height when needed (e.g., after expanding)
+function adjustSidebarHeight() {
+  var sidebar = document.getElementById("sidebar");
+  var sections = sidebar.querySelectorAll(".collapsible-section");
+
+  // Reset all sections to default height
+  sections.forEach(function(section) {
+    section.style.flexGrow = '0';
+  });
+
+  // Calculate the total number of expanded sections
+  var expandedSections = sidebar.querySelectorAll(".collapsible-section.expanded");
+
+  // If no sections are expanded, make one grow to fill the sidebar
+  if (expandedSections.length === 0) {
+    sections[0].style.flexGrow = '1'; // Make the first section expand by default
+  } else {
+    // Distribute remaining space among expanded sections
+    var spacePerSection = 100 / expandedSections.length;
+    expandedSections.forEach(function(expandedSection) {
+      expandedSection.style.flexGrow = spacePerSection;
+    });
   }
 }
 
@@ -393,6 +427,14 @@ function renderPlayerList() {
   unavailablePlayersDiv.innerHTML = "";
   notRespondedPlayersDiv.innerHTML = "";
 
+  let availablePlayers = 0;
+  let unavailablePlayers = 0;
+  let notRespondedPlayers = 0;
+
+  availableCount = document.getElementById("available-count");
+  unavailableCount = document.getElementById("unavailable-count");
+  notRespondedCount = document.getElementById("not-responded-count");
+
   players.forEach((player, index) => {
     const playerDiv = document.createElement("div");
     playerDiv.className = `player-info ${
@@ -414,12 +456,18 @@ function renderPlayerList() {
 
     if (player.available === null) {
       notRespondedPlayersDiv.appendChild(playerDiv);
+      notRespondedPlayers++;
     } else if (player.available) {
       availablePlayersDiv.appendChild(playerDiv);
+      availablePlayers++;
     } else {
       unavailablePlayersDiv.appendChild(playerDiv);
+      unavailablePlayers++;
     }
   });
+  availableCount.innerText = `${availablePlayers}`;
+  unavailableCount.innerText = `${unavailablePlayers}`;
+  notRespondedCount.innerText = `${notRespondedPlayers}`; 
 }
 
 
@@ -472,16 +520,28 @@ function updatePlayerList() {
   unavailableList.innerHTML = '';
   notRespondedList.innerHTML = '';
 
-  // Update lists based on player availability
+  let availablePlayers = 0;
+  let unavailablePlayers = 0;
+  let notRespondedPlayers = 0;
+
+  // Update lists and counts based on player availability
   for (let player of players) {
     if (player.availability === true) {
       availableList.innerHTML += `<div>${player.name}</div>`;
+      availablePlayers++;
     } else if (player.availability === false) {
       unavailableList.innerHTML += `<div>${player.name}</div>`;
+      unavailablePlayers++;
     } else {
       notRespondedList.innerHTML += `<div>${player.name}</div>`;
+      notRespondedPlayers++;
     }
   }
+
+  // Update the player count in the header
+  availableCount.innerText = `(${availablePlayers})`;
+  unavailableCount.innerText = `(${unavailablePlayers})`;
+  notRespondedCount.innerText = `(${notRespondedPlayers})`;
 }
 
 
@@ -504,6 +564,7 @@ function saveAvailabilityToFile() {
 
   alert("Availability saved to players.json!");
 }
+
 
 
 function saveSelectionToFile() {

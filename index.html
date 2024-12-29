@@ -18,6 +18,7 @@
                 <button id="save-availability"></i>Save Availability</button>
                 <button id="clear-all">Clear All</button>
             </div>
+            <button id="add-player-button">Add New Player</button>
             <div id="add-player-modal" class="modal hidden">
                 <!-- Modal for adding new player -->
                 <div class="modal-content">
@@ -89,56 +90,67 @@
             <div id="player-container">
                 <div class="collapsible-section" id="available-section">
                     <div class="collapsible-header" onclick="toggleSection('available')">
-                        <span class="triangle-icon">&#9654;</span> Available</div>
+                        <div><span class="triangle-icon">&#9654;</span> Available</div>
+                        <span class="player-count" id="available-count">0</span>
+                    </div>
                     <div class="collapsible-content" id="available">
-                        <!-- List of available players -->
+                        <div class="scrollable-container">
+                            <!-- List of available players -->
+                        </div>
                     </div>
                 </div>
 
                 <div class="collapsible-section" id="unavailable-section">
                     <div class="collapsible-header" onclick="toggleSection('unavailable')">
-                        <span class="triangle-icon">&#9654;</span> Unavailable</div>
+                        <div><span class="triangle-icon">&#9654;</span> Unavailable</div>
+                        <span class="player-count" id="unavailable-count">0</span>
+                    </div>
                     <div class="collapsible-content" id="unavailable">
-                        <!-- List of unavailable players -->
+                        <div class="scrollable-container">
+                            <!-- List of unavailable players -->
+                        </div>
                     </div>
                 </div>
 
                 <div class="collapsible-section" id="not-responded-section">
                     <div class="collapsible-header" onclick="toggleSection('not-responded')">
-                        <span class="triangle-icon">&#9654;</span> Not Responded</div>
+                        <div><span class="triangle-icon">&#9654;</span> Not Responded</div>
+                        <span class="player-count" id="not-responded-count">0</span>
+                    </div>
                     <div class="collapsible-content" id="not-responded">
-                        <button id="mark-all-available">Mark All Available</button>
-                        <div id="not-responded-list"></div>
-                        <!-- List of players who have not responded -->
+                        <div class="scrollable-container">
+                            <button id="mark-all-available">Mark All Available</button>
+                            <div id="not-responded-list">
+                                <!-- List of non-responsive players -->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <button id="add-player-button">Add New Player</button>
-        </div>
 
-        <div id="content">
-            <div id="header">
-                <h1>Starting Lineup</h1>
-                <div id="actions">
-                    <button id="clear-selections">Clear Selections</button>
-                    <button id="save-selection">Save Selection</button>
-                    <button id="copy-to-clipboard">Copy to Clipboard</button>
+            <div id="content">
+                <div id="header">
+                    <h1>Starting Lineup</h1>
+                    <div id="actions">
+                        <button id="clear-selections">Clear Selections</button>
+                        <button id="save-selection">Save Selection</button>
+                        <button id="copy-to-clipboard">Copy to Clipboard</button>
+                    </div>
+                </div>
+
+                <div id="select-squad">
+                    <div id="position-select"></div>
+                </div>
+                <div id="footer">
+                    <div id="replacements">
+                        <h2>Replacements</h2>
+                        <div id="replacements-select"></div>
+                    </div>
                 </div>
             </div>
-
-            <div id="select-squad">
-                <div id="position-select"></div>
-            </div>
-            <div id="footer">
-                <div id="replacements">
-                    <h2>Replacements</h2>
-                    <div id="replacements-select"></div>
-                </div>
-            </div>
         </div>
-    </div>
 
-    <script src="script.js" defer></script>
+        <script src="script.js" defer></script>
 </body>
 
 </html>
