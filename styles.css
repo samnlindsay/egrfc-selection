@@ -676,4 +676,8 @@ button:hover {
         display: flex;
         flex-direction: column;
     }
+
+    #toggle-btn {
+        font-size: 24px;
+    }
 }
