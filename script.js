@@ -626,8 +626,9 @@ function saveSelectionToFile() {
 // Ensure clearSelections() only resets the UI, not the selected players
 function clearSelections() {
   // You can reset the dropdowns and render the UI without resetting selectedPlayers
-  renderPositionSelect();
   selectedPlayers = {}; // Reset the selected players
+  players.forEach((player) => (player.selected = null)); // Reset selected property
+  renderPositionSelect();
 }
 
 

@@ -1,6 +1,15 @@
+/* Define variables at the root level */
+:root {
+    --primary-color: #202947;
+    --light-color: #d8d7da;
+    --dark-color: #333333;
+    --green-color: rgb(20, 111, 20);
+    --red-color: rgb(152, 21, 21);
+}
+
 body {
     font-family: 'Lato', 'Tahoma', sans-serif;
-    background-color: #eee;
+    background-color: var(--light-color);
     display: flex;
     justify-content: space-between;;
     padding: 20px;
@@ -8,16 +17,18 @@ body {
 }
 
 h1 {
-    font-family: 'Lato', 'Tahoma', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 40px;
     font-weight: bold;
     margin: 0;
+    color: whitesmoke
 }
 h2 {
-    font-family: 'Lato', 'Tahoma', sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 36px;
     font-weight: bold;
     margin: 0;
+    color: whitesmoke;
 }
 
 
@@ -30,11 +41,11 @@ h2 {
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: navy;
-    color: whitesmoke;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     width: 100%;
     margin: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #footer {
@@ -54,8 +65,8 @@ h2 {
     justify-content: flex-start;
     align-items: stretch;
     width: 295px;
-    background-color: #333;
-    color: whitesmoke;
+    background-color: var(--dark-color);
+    color: var(--light-color);
     padding: 10px;
     position: fixed;
     left: 0;
@@ -67,21 +78,18 @@ h2 {
 }
 
 .collapsible-section {
-    background-color: #0000;
-    border: 1px solid #ccc;
+    background-color: rgba(black, 0);
+    border: 1px solid var(--light-color);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     padding: 0px;
-    /* margin-bottom: 10px; */
     max-height: fit-content;
 }
 
 .scrollable-container {
     max-height: 100%;
-    /* Allow the container to take up the full height of its parent */
     overflow-y: auto;
-    /* Enable scrolling if the content exceeds the height */
 }
 
 .collapsible-content {
@@ -91,26 +99,26 @@ h2 {
   overflow-y: auto;
 }
 
-/* When a section is expanded */
 .collapsible-content.show {
   display: block;
 }
 
-/* Flex properties to ensure sections take up space based on expansion */
 .collapsible-section.expanded {
   flex-grow: 1;
 }
 
-/* Add some spacing around the sections */
 #sidebar > .collapsible-section:last-child {
   margin-bottom: 0;
 }
 
 #available-section{
-    background-color: #181c;
+    background-color: var(--green-color);
 }
 #unavailable-section{
-    background-color: #c33c;
+    background-color: var(--red-color);
+}
+#not-responded-section{
+    background-color: black ;
 }
 
 .collapsible-header {
@@ -136,12 +144,13 @@ h2 {
 .player-count {
     font-size: 20px;
     color: black;
-    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
     margin-left: 10px;
-    background-color: #fffa;   
+    background-color: var(--light-color);   
     padding: 5px;
     border-radius: 20px;
-    border: 2px solid #000;
+    border: 2px solid black;
 }
 
 #player-container {
@@ -163,9 +172,6 @@ h2 {
     padding: 5px;
 }
 
-
-
-/* Targeting player-info directly, not #player-list */
 .player-info {
     display: flex;
     justify-content: flex-start;
@@ -180,6 +186,7 @@ h2 {
 
 .player-name {
     margin-right: auto;
+    color: var(--light-color);
 }
 .player-info .player-actions {
     margin-left: auto;
@@ -191,7 +198,7 @@ h2 {
     justify-content: center;
     font-size: 18px;
     background-color: transparent;
-    color: whitesmoke;
+    color: var(--light-color);
     border: none;
     cursor: pointer;
     margin: 0px;
@@ -199,37 +206,39 @@ h2 {
 }
 
 .player-info .icon:hover {
-    background-color: #ccc;
+    background-color: var(--dark-color);
+    border-radius: 10px;
+
 }
 
 .icon-edit {
     opacity: 0.5;
 }
 .player-info .icon-x {
-    color: #c33;
+    color: var(--red-color);
 }
 .player-info .icon-check {
-    color: #1a1;
+    color: var(--green-color);
 }
 .player-info .icon-trash {
-    color: #ccc;
+    color: var(--light-color);
 }
 
 #mark-all-available{
-    background-color: navy;
-    color: whitesmoke;
+    background-color: var(--primary-color);
+    color: var(--light-color);
     margin: 10px 0;
     padding: 5px 10px;
-    border: 2px solid whitesmoke;
+    border: 2px solid var(--light-color);
     border-radius: 5px;
     font-size: 14px;
     cursor: pointer;
 }
 
 #save-availability, #add-player-button, #clear-all {
-    background-color: navy;
-    color: whitesmoke;
-    border: 2px solid whitesmoke;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border: 2px solid var(--light-color);
     border-radius: 5px;
     padding: 10px;
     font-size: 14px;
@@ -251,8 +260,8 @@ h2 {
 }
 
 #save-availability:hover, #clear-all:hover, #mark-all-available:hover, #add-player-button:hover {
-    background-color: whitesmoke;
-    color: navy;
+    background-color: var(--light-color);
+    color: var(--primary-color);
 }
 
 #cancel-add-player, #save-player-button {
@@ -266,14 +275,14 @@ h2 {
     opacity: 0.8;
 }
 #cancel-add-player:hover {
-    background-color: red;
-    color: whitesmoke;
+    background-color: var(--red-color);
+    color: var(--light-color);
     opacity: 1;
 }
 #save-player-button:hover {
     opacity: 1;
-    background-color: green;
-    color: whitesmoke;
+    background-color: var(--green-color);
+    color: var(--light-color);
 }
 
 
@@ -286,7 +295,7 @@ h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #0008;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -294,7 +303,7 @@ h2 {
 }
 
 .modal-content {
-    background: #114;
+    background: var(--primary-color);
     border: white 5px solid;
     padding: 20px;
     border-radius: 8px;
@@ -359,7 +368,6 @@ label {
 .checkbox-item label {
     flex: none;
     font-size: 16px;
-    /* margin-right: auto; */
     text-align: left;
     margin-bottom: auto;
 }
@@ -379,7 +387,6 @@ checkbox-group {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    /* margin: 0px; */
     margin-top: 10px;
 }
 
@@ -388,6 +395,7 @@ button {
     border-radius: 5px;
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -411,7 +419,7 @@ button:hover {
 }
 
 #select-squad {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 /* Container for all rows */
@@ -421,13 +429,13 @@ button:hover {
     gap: 0px;
     margin: 0px;
     width: 100%;
-    /* max-width: 800px; */
 }
 
 /* General styles for rows */
 .position-row {
     display: flex;
     gap: 5px;
+    margin-top: -10px;
 }
 
 /* General styles for position cells */
@@ -436,19 +444,23 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 160px;
+    width: 180px;
     text-align: center;
-    margin: 5px 0;
+    margin: 8px 0;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: whitesmoke;
 }
 
 .row-1 {padding-left: 10%;}
 .row-2 {padding-left: 0%;}
 .row-3 {padding-left: 24%;}
-.row-4 {padding-left: 0%; margin-top: -10px;}
-.row-5 {padding-left: 15%; margin-top: -10px;}
-.row-6 {padding-left: 30%; margin-top: -10px;}
-.row-7 {padding-left: 0%; margin-top: -10px;}
-.row-8 {padding-left: 40%; margin-top: -10px;}
+.row-4 {padding-left: 0%;}
+.row-5 {padding-left: 15%; }
+.row-6 {padding-left: 30%;}
+.row-7 {padding-left: 0%; }
+.row-8 {padding-left: 40%;}
 
 
 .position-cell:empty {
@@ -465,19 +477,18 @@ button:hover {
 .position-cell select {
     padding: 5px;
     font-size: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid white;
     border-radius: 5px;
     width: 100%;
     text-align: center;
-    background-color: lightgray;
+    background-color: var(--light-color);
 }
 
 /* Style for select dropdown when a player is selected */
 .position-cell .select-selected {
-    background-color: navy;
+    background-color: var(--primary-color);
     border-color: black;
-    color: whitesmoke;
-    font-weight: bold;
+    color: white;
 }
 
 .position-header {
@@ -489,16 +500,16 @@ button:hover {
 }
 
 .position-number {
-    font-family: 'Lato', 'Tahoma', sans-serif;
-    font-size: 40px;
-    font-weight: bold;
-    color: navy;
+    font-family: 'Oswald', sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--primary-color);
 }
 
 .position-label {
-    font-size: 14px;
-    color: #0008;
-    margin-top: 15px;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 20px;
+    color: var(--primary-color);
 }
 
 #replacements {
@@ -525,25 +536,25 @@ button:hover {
 .replacement-number {
     font-size: 40px;
     font-weight: bold;
-    color: whitesmoke;
+    color: var(--light-color);
 }
 
 .replacement-cell select {
     padding: 5px;
     margin: 15px;
     font-size: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid white;
     border-radius: 5px;
     width: 160px;
     text-align: center;
     align-self: center;
-    background-color: lightgray;
+    background-color: var(--light-color);
 }
 
 .replacement-cell .select-selected {
     background-color: black;
-    border-color: whitesmoke;
-    color: whitesmoke;
+    border-color: var(--light-color);
+    color: var(--light-color);
     font-weight: bold;
 }
 
@@ -555,10 +566,10 @@ button:hover {
 }
 
 #actions button {
-    background-color: whitesmoke;
-    color: navy;
+    background-color: var(--light-color);
+    color: var(--primary-color);
     padding: 10px 15px;
-    border: 4px solid navy;
+    border: 2px solid black;
     border-radius: 5px;
     font-size: 14px;
     font-weight: bold;
@@ -567,6 +578,7 @@ button:hover {
 }
 
 #actions button:hover {
-    background-color: navy;
-    color: whitesmoke;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border-color: var(--light-color);
 }
