@@ -121,6 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
+    document
+      .querySelectorAll(".select-selected")
+      .forEach((dropdown, index) => {
+        dropdown.addEventListener("change", () =>
+          handlePlayerSelection(index + 1)
+        );
+      });
 
 });
 
@@ -203,6 +210,9 @@ function loadPlayers() {
     .then((response) => response.json())
     .then((data) => {
       players = data;
+      players.forEach((player) => {
+        player.selected = null; // Initialize selected property
+      });
       initializePlayerAvailability();
       renderPlayerList();
       renderPositionSelect(); // Call to render the dropdowns for positions
@@ -222,7 +232,6 @@ function renderPositionSelect() {
   const positionSelectDiv = document.getElementById("position-select");
   positionSelectDiv.innerHTML = ""; // Clear existing content
 
-  // Predefined numbers for each position
   const positionNumbers = {
     Prop: [1, 3],
     Hooker: [2],
@@ -236,7 +245,6 @@ function renderPositionSelect() {
     "Full Back": [15],
   };
 
-  // Track used numbers to avoid duplication
   const usedNumbers = new Set();
 
   const rows = [
@@ -297,14 +305,15 @@ function renderPositionSelect() {
             if (
               player.available &&
               player.position.includes(positionName) &&
-              !Object.values(selectedPlayers).includes(playerIndex.toString())
+              (player.selected === null || player.selected === assignedNumber)
             ) {
               const option = document.createElement("option");
               option.value = playerIndex;
               option.textContent = player.name;
 
-              if (selectedPlayers[assignedNumber] === playerIndex.toString()) {
+              if (player.selected === assignedNumber) {
                 option.selected = true;
+                positionSelect.classList.add("select-selected");
               }
 
               positionSelect.appendChild(option);
@@ -313,22 +322,18 @@ function renderPositionSelect() {
 
           positionSelect.addEventListener("change", (event) => {
             const selectedPlayerIndex = event.target.value;
-            selectedPlayers[assignedNumber] = selectedPlayerIndex; // Assign player to the number
 
-            // Add class to indicate a selection has been made
-            if (selectedPlayerIndex !== "") {
-              positionSelect.classList.add("select-selected");
-            } else {
-              positionSelect.classList.remove("select-selected");
-            }
+            players.forEach((player, index) => {
+              if (index === parseInt(selectedPlayerIndex)) {
+                player.selected = assignedNumber;
+              } else if (player.selected === assignedNumber) {
+                player.selected = null;
+              }
+            });
+
+            // Re-render dropdowns to reflect updated selections
+            renderPositionSelect();
           });
-
-          // Check initial value and apply appropriate class
-          if (positionSelect.value !== "") {
-            positionSelect.classList.add("select-selected");
-          } else {
-            positionSelect.classList.remove("select-selected");
-          }
 
           positionDiv.appendChild(positionHeader);
           positionDiv.appendChild(positionSelect);
@@ -347,7 +352,6 @@ function renderPositionSelect() {
     positionSelectDiv.appendChild(rowDiv);
   });
 
-  // Handle replacements (16, 17, 18)
   const replacementsSelectDiv = document.getElementById("replacements-select");
   replacementsSelectDiv.innerHTML = ""; // Clear existing content
 
@@ -373,13 +377,13 @@ function renderPositionSelect() {
     players.forEach((player, playerIndex) => {
       if (
         player.available &&
-        !Object.values(selectedPlayers).includes(playerIndex.toString())
+        (player.selected === null || player.selected === replacementNumber)
       ) {
         const option = document.createElement("option");
         option.value = playerIndex;
         option.textContent = player.name;
 
-        if (selectedPlayers[replacementNumber] === playerIndex.toString()) {
+        if (player.selected === replacementNumber) {
           option.selected = true;
         }
 
@@ -389,22 +393,17 @@ function renderPositionSelect() {
 
     positionSelect.addEventListener("change", (event) => {
       const selectedPlayerIndex = event.target.value;
-      selectedPlayers[replacementNumber] = selectedPlayerIndex; // Assign player to replacement
-      
-      // Add class to indicate a selection has been made
-      if (selectedPlayerIndex !== "") {
-        positionSelect.classList.add("select-selected");
-      } else {
-        positionSelect.classList.remove("select-selected");
-      }
-    });
 
-    // Check initial value and apply appropriate class
-    if (positionSelect.value !== "") {
-      positionSelect.classList.add("select-selected");
-    } else {
-      positionSelect.classList.remove("select-selected");
-    }
+      players.forEach((player, index) => {
+        if (index === parseInt(selectedPlayerIndex)) {
+          player.selected = replacementNumber;
+        } else if (player.selected === replacementNumber) {
+          player.selected = null;
+        }
+      });
+
+      renderPositionSelect();
+    });
 
     replacementDiv.appendChild(positionNumberLabel);
     replacementDiv.appendChild(positionSelect);
@@ -413,6 +412,7 @@ function renderPositionSelect() {
 
   replacementsSelectDiv.appendChild(replacementsDiv);
 }
+
 
 
 function renderPlayerList() {
@@ -468,6 +468,46 @@ function renderPlayerList() {
   availableCount.innerText = `${availablePlayers}`;
   unavailableCount.innerText = `${unavailablePlayers}`;
   notRespondedCount.innerText = `${notRespondedPlayers}`; 
+}
+
+function updateDropdownOptions(positionNumber) {
+  const dropdown = document.getElementById(
+    `select-position-${positionNumber}`
+  );
+  dropdown.innerHTML = ""; // Clear existing options
+
+  players.forEach((player) => {
+    if (player.selected === null || player.selected === positionNumber) {
+      const option = document.createElement("option");
+      option.value = player.name;
+      option.textContent = player.name;
+      dropdown.appendChild(option);
+    }
+  });
+}
+
+function handlePlayerSelection(positionNumber) {
+  const dropdown = document.getElementById(`select-position-${positionNumber}`);
+  const selectedPlayerName = dropdown.value;
+
+  // If a player is selected, add the class
+  if (selectedPlayerName) {
+    dropdown.classList.add("select-selected");
+  } else {
+    dropdown.classList.remove("select-selected"); // Remove if no selection
+  }
+
+  // Update the `selected` property of players
+  players.forEach((player) => {
+    if (player.name === selectedPlayerName) {
+      player.selected = positionNumber;
+    } else if (player.selected === positionNumber) {
+      player.selected = null;
+    }
+  });
+
+  // Re-render dropdowns to reflect updated selections
+  renderPositionSelect();
 }
 
 
