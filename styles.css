@@ -499,7 +499,7 @@ button:hover {
     margin-top: auto;
 }
 
-.position-number {
+.position-number, .replacement-number {
     font-family: 'Oswald', sans-serif;
     font-size: 36px;
     font-weight: 600;
@@ -534,9 +534,8 @@ button:hover {
 }
 
 .replacement-number {
-    font-size: 40px;
-    font-weight: bold;
     color: var(--light-color);
+    align-content: center;
 }
 
 .replacement-cell select {
