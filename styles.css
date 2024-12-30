@@ -15,7 +15,7 @@ h1 {
 }
 h2 {
     font-family: 'Lato', 'Tahoma', sans-serif;
-    font-size: 30px;
+    font-size: 36px;
     font-weight: bold;
     margin: 0;
 }
@@ -121,7 +121,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+}   
 
 .triangle-icon {
     display: inline-block;
@@ -272,6 +272,8 @@ h2 {
 }
 #save-player-button:hover {
     opacity: 1;
+    background-color: green;
+    color: whitesmoke;
 }
 
 
@@ -292,8 +294,8 @@ h2 {
 }
 
 .modal-content {
-    background: navy;
-    border: black 5px solid;
+    background: #114;
+    border: white 5px solid;
     padding: 20px;
     border-radius: 8px;
     text-align: center;
@@ -302,72 +304,88 @@ h2 {
 
 .modal-content div {
     display: flex;
-    align-items: center;
-    margin-bottom: 10px;
 }
 
 #player-positions {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
 }
 
-.modal-content input,
+.modal-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ccc9;
+    border-radius: 5px;
+}
+
 .modal-content select {
     flex: 1;
 }
+.modal-input input {
+    flex: 7;
+}
+
+.checkbox-item {
+    display: flex;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    cursor: pointer;
+    margin: 0;
+    margin-right: 5px;
+}
+
+label {
+    flex:2;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: left;
+    margin-right: 10px;
+}
 
 .checkbox-item label {
-    width: max-content;
-    margin-right: 10px;
+    flex: none;
+    font-size: 16px;
+    /* margin-right: auto; */
+    text-align: left;
+    margin-bottom: auto;
+}
+
+.checkbox-column {
+    display: flex;
+    flex-direction: column; 
+    text-align: left;
 }
 
 checkbox-group {
     display: flex;
     flex-direction: column;
-    /* Arrange items in a column */
-    gap: 10px;
-    /* Add spacing between each checkbox item */
-    margin-top: 10px;
-}
-
-#player-positions {
-    float: right;
-}
-
-.checkbox-item {
-    display: flex;
-    margin: 0px;
-    justify-self: right;
-}
-
-.checkbox-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    accent-color: navy;
-    margin: 0;
-}
-
-/* Additional hover or focus effects (optional) */
-.checkbox-item input[type="checkbox"]:hover {
-    border-color: lightblue;
-}
-
-.checkbox-item input[type="checkbox"]:focus {
-    outline: 2px solid lightblue;
 }
 
 .button-group {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    margin: 0px;
+    /* margin: 0px; */
+    margin-top: 10px;
 }
 
 button {
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
     color: white;
     cursor: pointer;
 }
@@ -386,9 +404,10 @@ button:hover {
 #content {
     position: fixed;
     top: 0;
-    margin-left: 275px;
+    margin-left: 285px;
     width: calc(100% - 275px);
     max-width: max-content;
+    z-index: 0;
 }
 
 #select-squad {

@@ -503,10 +503,12 @@ function markAllAvailable() {
 // Function to clear all players' availability (set to null)
 document.getElementById("clear-all").addEventListener("click", function() {
   // Loop through all players and set their availability to null (not responded)
-  for (let player of players) {
-    player.availability = null; // or players[playerId].availability = null;
-  }
-  updatePlayerList(); // Update the UI with the new availability state
+  players.forEach((player, index) => {
+    playerAvailability[index] = null;
+    player.available = null;
+  });
+  renderPlayerList(); // Re-render the UI
+  renderPositionSelect(); // Update dropdowns
 });
 
 // Update the player list to reflect the changes

@@ -22,60 +22,64 @@
             <div id="add-player-modal" class="modal hidden">
                 <!-- Modal for adding new player -->
                 <div class="modal-content">
-                    <h2 style="margin-bottom:10px">Add New Player</h2>
+                    <h2 style="margin-bottom:30px">Add New Player</h2>
                     <!-- Name -->
-                    <div>
+                    <div class="modal-input">
                         <label for="player-name">Name:</label>
                         <input type="text" id="player-name" />
                     </div>
                     <!-- Position -->
-                    <div>
+                    <div class="modal-input">
                         <label for="player-positions">Position:</label>
                         <div id="player-positions">
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="position-prop" value="Prop">
-                                <label for="position-prop">Prop</label>
+                            <div class="checkbox-column">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="position-prop" value="Prop">
+                                    <label for="position-prop">Prop</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="position-hooker" value="Hooker">
+                                    <label for="position-hooker">Hooker</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="position-lock" value="Lock">
+                                    <label for="position-lock">Second Row</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="position-flanker" value="Flanker">
+                                    <label for="position-flanker">Flanker</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="position-number8" value="Number 8">
+                                    <label for="position-number8">Number 8</label>
+                                </div>
                             </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="position-hooker" value="Hooker">
-                                <label for="position-hooker">Hooker</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="position-lock" value="Lock">
-                                <label for="position-lock">Lock</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="position-flanker" value="Flanker">
-                                <label for="position-flanker">Flanker</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="position-number8" value="Number 8">
-                                <label for="position-number8">Number 8</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="position-scrumhalf" value="Scrumhalf">
-                                <label for="position-scrumhalf">Scrumhalf</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="position-flyhalf" value="Flyhalf">
-                                <label for="position-flyhalf">Flyhalf</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="position-center" value="Center">
-                                <label for="position-center">Center</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="position-wing" value="Wing">
-                                <label for="position-wing">Wing</label>
-                            </div>
-                            <div class="checkbox-item">
-                                <input type="checkbox" id="position-fullback" value="Fullback">
-                                <label for="position-fullback">Fullback</label>
+                            <div class="checkbox-column">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="position-scrumhalf" value="Scrumhalf">
+                                    <label for="position-scrumhalf">Scrum Half</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="position-flyhalf" value="Flyhalf">
+                                    <label for="position-flyhalf">Fly Half</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="position-center" value="Center">
+                                    <label for="position-center">Center</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="position-wing" value="Wing">
+                                    <label for="position-wing">Wing</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="position-fullback" value="Fullback">
+                                    <label for="position-fullback">Full Back</label>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!-- Availability -->
-                    <div>
+                    <div class="modal-input">
                         <label for="player-availability">Available:</label>
                         <input type="checkbox" id="player-availability" />
                     </div>
