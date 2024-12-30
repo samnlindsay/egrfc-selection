@@ -131,6 +131,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+const sidebar = document.getElementById("sidebar");
+const toggleBtn = document.getElementById("toggle-btn");
+const content = document.getElementById("content");
+
+toggleBtn.addEventListener("click", () => {
+  sidebar.classList.toggle("collapsed");
+  content.classList.toggle("sidebar-collapsed");
+  
+  // Update the toggle button's arrow direction
+  if (sidebar.classList.contains("collapsed")) {
+    toggleBtn.innerHTML = "<i class='fa-solid fa-bars'></i>";
+  } else {
+    toggleBtn.innerHTML =
+      '<span style="margin: 10px;">Show / Hide</span><i class="fa-solid fa-bars"></i>'; 
+  }
+});
+
+
 // Edit player name and positions (display current name/positions as default)
 function editPlayer(index) {
   const player = players[index];
@@ -385,6 +403,7 @@ function renderPositionSelect() {
 
         if (player.selected === replacementNumber) {
           option.selected = true;
+          positionSelect.classList.add("select-selected");
         }
 
         positionSelect.appendChild(option);

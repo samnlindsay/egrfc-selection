@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Squad Selection</title>
+    <title>EGRFC Squad Selection</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:800'>
@@ -16,142 +16,149 @@
 </head>
 
 <body>
-    <div id="app">
-        <div id="sidebar">
-            <div class="button-group">
-                <button id="save-availability"></i>Save Availability</button>
-                <button id="clear-all">Clear All</button>
-            </div>
-            <button id="add-player-button">Add New Player</button>
-            <div id="add-player-modal" class="modal hidden">
-                <!-- Modal for adding new player -->
-                <div class="modal-content">
-                    <h2 style="margin-bottom:30px">Add New Player</h2>
-                    <!-- Name -->
-                    <div class="modal-input">
-                        <label for="player-name">Name:</label>
-                        <input type="text" id="player-name" />
-                    </div>
-                    <!-- Position -->
-                    <div class="modal-input">
-                        <label for="player-positions">Position:</label>
-                        <div id="player-positions">
-                            <div class="checkbox-column">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="position-prop" value="Prop">
-                                    <label for="position-prop">Prop</label>
+    <div id="app" class="container">
+        <div id="sidebar" class="sidebar">
+            <button id="toggle-btn">
+                <span style="margin: 10px; opacity: 0.8;">Show / Hide</span>
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="sidebar-content">
+                <div class="button-group">
+                    <button id="save-availability"></i>Save Availability</button>
+                    <button id="clear-all">Clear All</button>
+                </div>
+                <button id="add-player-button">Add New Player</button>
+                <div id="add-player-modal" class="modal hidden">
+                    <!-- Modal for adding new player -->
+                    <div class="modal-content">
+                        <h2 style="margin-bottom:30px">Add New Player</h2>
+                        <!-- Name -->
+                        <div class="modal-input">
+                            <label for="player-name">Name:</label>
+                            <input type="text" id="player-name" />
+                        </div>
+                        <!-- Position -->
+                        <div class="modal-input">
+                            <label for="player-positions">Position:</label>
+                            <div id="player-positions">
+                                <div class="checkbox-column">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="position-prop" value="Prop">
+                                        <label for="position-prop">Prop</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="position-hooker" value="Hooker">
+                                        <label for="position-hooker">Hooker</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="position-lock" value="Lock">
+                                        <label for="position-lock">Second Row</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="position-flanker" value="Flanker">
+                                        <label for="position-flanker">Flanker</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="position-number8" value="Number 8">
+                                        <label for="position-number8">Number 8</label>
+                                    </div>
                                 </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="position-hooker" value="Hooker">
-                                    <label for="position-hooker">Hooker</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="position-lock" value="Lock">
-                                    <label for="position-lock">Second Row</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="position-flanker" value="Flanker">
-                                    <label for="position-flanker">Flanker</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="position-number8" value="Number 8">
-                                    <label for="position-number8">Number 8</label>
+                                <div class="checkbox-column">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="position-scrumhalf" value="Scrumhalf">
+                                        <label for="position-scrumhalf">Scrum Half</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="position-flyhalf" value="Flyhalf">
+                                        <label for="position-flyhalf">Fly Half</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="position-center" value="Center">
+                                        <label for="position-center">Center</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="position-wing" value="Wing">
+                                        <label for="position-wing">Wing</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="position-fullback" value="Fullback">
+                                        <label for="position-fullback">Full Back</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="checkbox-column">
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="position-scrumhalf" value="Scrumhalf">
-                                    <label for="position-scrumhalf">Scrum Half</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="position-flyhalf" value="Flyhalf">
-                                    <label for="position-flyhalf">Fly Half</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="position-center" value="Center">
-                                    <label for="position-center">Center</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="position-wing" value="Wing">
-                                    <label for="position-wing">Wing</label>
-                                </div>
-                                <div class="checkbox-item">
-                                    <input type="checkbox" id="position-fullback" value="Fullback">
-                                    <label for="position-fullback">Full Back</label>
-                                </div>
+                        </div>
+                        <!-- Availability -->
+                        <div class="modal-input">
+                            <label for="player-availability">Available:</label>
+                            <input type="checkbox" id="player-availability" />
+                        </div>
+                        <!-- Buttons -->
+                        <div class="button-group">
+                            <button id="save-player-button">Save</button>
+                            <button id="cancel-add-player">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="player-container">
+                    <div class="collapsible-section" id="available-section">
+                        <div class="collapsible-header" onclick="toggleSection('available')">
+                            <div><span class="triangle-icon">&#9654;</span> Available</div>
+                            <span class="player-count" id="available-count">0</span>
+                        </div>
+                        <div class="collapsible-content" id="available">
+                            <div class="scrollable-container">
+                                <!-- List of available players -->
                             </div>
                         </div>
                     </div>
-                    <!-- Availability -->
-                    <div class="modal-input">
-                        <label for="player-availability">Available:</label>
-                        <input type="checkbox" id="player-availability" />
-                    </div>
-                    <!-- Buttons -->
-                    <div class="button-group">
-                        <button id="save-player-button">Save</button>
-                        <button id="cancel-add-player">Cancel</button>
-                    </div>
-                </div>
-            </div>
 
-            <div id="player-container">
-                <div class="collapsible-section" id="available-section">
-                    <div class="collapsible-header" onclick="toggleSection('available')">
-                        <div><span class="triangle-icon">&#9654;</span> Available</div>
-                        <span class="player-count" id="available-count">0</span>
-                    </div>
-                    <div class="collapsible-content" id="available">
-                        <div class="scrollable-container">
-                            <!-- List of available players -->
+                    <div class="collapsible-section" id="unavailable-section">
+                        <div class="collapsible-header" onclick="toggleSection('unavailable')">
+                            <div><span class="triangle-icon">&#9654;</span> Unavailable</div>
+                            <span class="player-count" id="unavailable-count">0</span>
+                        </div>
+                        <div class="collapsible-content" id="unavailable">
+                            <div class="scrollable-container">
+                                <!-- List of unavailable players -->
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="collapsible-section" id="unavailable-section">
-                    <div class="collapsible-header" onclick="toggleSection('unavailable')">
-                        <div><span class="triangle-icon">&#9654;</span> Unavailable</div>
-                        <span class="player-count" id="unavailable-count">0</span>
-                    </div>
-                    <div class="collapsible-content" id="unavailable">
-                        <div class="scrollable-container">
-                            <!-- List of unavailable players -->
+                    <div class="collapsible-section" id="not-responded-section">
+                        <div class="collapsible-header" onclick="toggleSection('not-responded')">
+                            <div><span class="triangle-icon">&#9654;</span> Not Responded</div>
+                            <span class="player-count" id="not-responded-count">0</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="collapsible-section" id="not-responded-section">
-                    <div class="collapsible-header" onclick="toggleSection('not-responded')">
-                        <div><span class="triangle-icon">&#9654;</span> Not Responded</div>
-                        <span class="player-count" id="not-responded-count">0</span>
-                    </div>
-                    <div class="collapsible-content" id="not-responded">
-                        <div class="scrollable-container">
-                            <button id="mark-all-available">Mark All Available</button>
-                            <div id="not-responded-list">
-                                <!-- List of non-responsive players -->
+                        <div class="collapsible-content" id="not-responded">
+                            <div class="scrollable-container">
+                                <button id="mark-all-available">Mark All Available</button>
+                                <div id="not-responded-list">
+                                    <!-- List of non-responsive players -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="content">
+        <div id="content" class="content">
             <div id="header">
-                <h1>Starting Lineup</h1>
+                <img src="https://img-res.pitchero.com/?url=images.pitchero.com%2Fclub_logos%2F4860%2Fq8XL0Ot4QSqgy8nOKnCb_Logo.png&bg=null&h=180&w=180&t=square&q=null" alt="Team Logo" />
+                <h1>EGRFC Starting Lineup</h1>
                 <div id="actions">
                     <button id="clear-selections">Clear Selections</button>
                     <button id="save-selection">Save Selection</button>
                     <button id="copy-to-clipboard">Copy to Clipboard</button>
                 </div>
             </div>
-        
+
             <div id="select-squad">
                 <div id="position-select"></div>
             </div>
             <div id="footer">
                 <div id="replacements">
-                    <h2>Replacements</h2>
+                    <h1>Replacements</h1>
                     <div id="replacements-select"></div>
                 </div>
             </div>

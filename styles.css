@@ -5,6 +5,9 @@
     --dark-color: #333333;
     --green-color: rgb(20, 111, 20);
     --red-color: rgb(152, 21, 21);
+    --sidebar-width: 295px;
+    --sidebar-collapsed-width: 60px;
+    --header-height: 100px;
 }
 
 body {
@@ -17,20 +20,12 @@ body {
 }
 
 h1 {
-    font-family: 'Lato', sans-serif;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-weight: 600;
     font-size: 40px;
-    font-weight: bold;
-    margin: 0;
+    margin: 0px 20px;
     color: whitesmoke
 }
-h2 {
-    font-family: 'Lato', sans-serif;
-    font-size: 36px;
-    font-weight: bold;
-    margin: 0;
-    color: whitesmoke;
-}
-
 
 /* ---------------- */
 /* HEADER STYLING */
@@ -38,21 +33,102 @@ h2 {
 
 #header, #footer {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 20px;
     background-color: var(--primary-color);
     color: var(--secondary-color);
     width: 100%;
     margin: 0px;
     margin-bottom: 10px;
+    height: var(--header-height);
 }
 
-#footer {
-    margin: 0px;
-    margin-top: 20px;
+/* Layout container */
+.container {
     display: flex;
-    height: 50px;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.content.sidebar-collapsed {
+    left: 0;
+    /* Adjust to account for button width when sidebar is collapsed */
+}
+
+/* Sidebar styles */
+#sidebar {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 295px;
+    background-color: var(--dark-color);
+    color: var(--light-color);
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    z-index: 10;
+    transition: transform 0.3s ease;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+}
+
+/* Hide all other elements inside the sidebar when collapsed */
+#sidebar.collapsed .sidebar-content {
+    display: none;
+}
+
+/* Toggle button */
+#toggle-btn {
+    background-color: transparent;
+    color: var(--light-color);
+    margin-left: auto;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    opacity: 0.8;
+}
+#toggle-btn i {
+    font-size: 30px;
+    color: var(--light-color);
+}
+
+#toggle-btn:hover {
+    background-color: whitesmoke;
+    color: var(--dark-color);
+    opacity: 0.5;
+}
+
+.content {
+    background-color: rgba(34, 139, 34, 0.5);
+    flex-grow: 1;
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
+    height: 100%;
+}
+
+.content.sidebar-collapsed {
+    left: var(--sidebar-collapsed-width);
+    /* Matches the collapsed sidebar width */
+    width: calc(100% - var(--sidebar-collapsed-width));
+    /* Adjust to avoid overflow */
+}
+
+img {
+    height: var(--header-height);
+    margin-left: 20px;
 }
 
 /* --------------- */
@@ -75,6 +151,7 @@ h2 {
     z-index: 10;
     transition: transform 0.3s ease;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .collapsible-section {
@@ -149,7 +226,7 @@ h2 {
     margin-left: 10px;
     background-color: var(--light-color);   
     padding: 5px;
-    border-radius: 20px;
+    border-radius: 50%;
     border: 2px solid black;
 }
 
@@ -257,6 +334,7 @@ h2 {
 #add-player-button{
     padding: 5px;
     margin-top: 0;
+    width: 100%;
 }
 
 #save-availability:hover, #clear-all:hover, #mark-all-available:hover, #add-player-button:hover {
@@ -409,17 +487,10 @@ button:hover {
 /* ----------------- */
 /* MAIN BODY STYLING */
 /* ----------------- */
-#content {
-    position: fixed;
-    top: 0;
-    margin-left: 275px;
-    width: calc(100% - 275px);
-    max-width: max-content;
-    z-index: 0;
-}
+
 
 #select-squad {
-    margin-left: 10px;
+    margin: 20px;
 }
 
 /* Container for all rows */
@@ -448,9 +519,9 @@ button:hover {
     text-align: center;
     margin: 8px 0;
     padding: 5px;
-    border: 1px solid black;
+    border: 2px solid black;
     border-radius: 8px;
-    background-color: whitesmoke;
+    background-color: rgba(255, 255, 255, 0.75);
 }
 
 .row-1 {padding-left: 10%;}
@@ -475,9 +546,11 @@ button:hover {
 }
 
 .position-cell select {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
     padding: 5px;
-    font-size: 14px;
-    border: 1px solid white;
+    font-size: 16px;
+    border: 1px solid var(--primary-color);
     border-radius: 5px;
     width: 100%;
     text-align: center;
@@ -487,7 +560,7 @@ button:hover {
 /* Style for select dropdown when a player is selected */
 .position-cell .select-selected {
     background-color: var(--primary-color);
-    border-color: black;
+    border: 1px solid rgba(255, 255, 255, 0);
     color: white;
 }
 
@@ -522,7 +595,7 @@ button:hover {
 
 .replacements-row {
     display: flex;
-    justify-content: left;
+    justify-content: space-evenly;
     align-items: center;
     gap: 16px;
     margin-left: 20px;
@@ -534,6 +607,7 @@ button:hover {
 }
 
 .replacement-number {
+    font-size: 42px;
     color: var(--light-color);
     align-content: center;
 }
@@ -562,6 +636,8 @@ button:hover {
 /* ---------------------- */
 #actions {
     text-align: left;
+    padding: 20px;
+    margin-left: auto;
 }
 
 #actions button {
