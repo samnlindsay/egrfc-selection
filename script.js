@@ -269,9 +269,9 @@ function renderPositionSelect() {
     ["Prop", "Hooker", "Prop"],
     ["Flanker", "Second Row", "Second Row", "Flanker"],
     ["Number 8"],
-    [null, "Scrum Half"],
-    [null, "Fly Half"],
-    [null, "Centre", "Centre"],
+    ["Scrum Half"],
+    ["Fly Half"],
+    ["Centre", "Centre"],
     ["Wing", "Wing"],
     ["Full Back"],
   ];

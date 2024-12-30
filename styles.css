@@ -8,6 +8,7 @@
     --sidebar-width: 295px;
     --sidebar-collapsed-width: 60px;
     --header-height: 100px;
+    --player-width: 180px;
 }
 
 body {
@@ -40,6 +41,11 @@ h1 {
     margin: 0px;
     margin-bottom: 10px;
     min-height: var(--header-height);
+    height: max-content;
+}
+
+#footer {
+    margin-bottom: auto;
     height: max-content;
 }
 
@@ -517,8 +523,7 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 180px;
-    min-width: 120px;
+    width: var(--player-width);
     text-align: center;
     margin: 8px 0;
     padding: 5px;
@@ -527,14 +532,14 @@ button:hover {
     background-color: rgba(255, 255, 255, 0.75);
 }
 
-.row-1 {padding-left: 10%;}
-.row-2 {padding-left: 0%;}
-.row-3 {padding-left: 24%;}
-.row-4 {padding-left: 0%;}
-.row-5 {padding-left: 15%; }
-.row-6 {padding-left: 30%;}
-.row-7 {padding-left: 0%; justify-content: space-between;}
-.row-8 {padding-left: 40%;}
+.row-1 {margin-left: calc(var(--player-width) * 0.5);}
+.row-2 {margin-left: 0;}
+.row-3 {margin-left: calc(var(--player-width) * 1.5);}
+.row-4 {margin-left: calc(var(--player-width) * 1.0);}
+.row-5 {margin-left: calc(var(--player-width) * 1.75);}
+.row-6 {margin-left: calc(var(--player-width) * 2.5);}
+.row-7 {justify-content: space-between; max-width: calc(var(--player-width) * 6);}
+.row-8 {justify-content: space-around; max-width: calc(var(--player-width) * 8);}
 
 
 .position-cell:empty {
