@@ -272,7 +272,7 @@ function renderPositionSelect() {
     [null, "Scrum Half"],
     [null, "Fly Half"],
     [null, "Centre", "Centre"],
-    ["Wing", null, null, null, null, "Wing"],
+    ["Wing", "Wing"],
     ["Full Back"],
   ];
 

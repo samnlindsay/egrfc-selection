@@ -39,7 +39,8 @@ h1 {
     width: 100%;
     margin: 0px;
     margin-bottom: 10px;
-    height: var(--header-height);
+    min-height: var(--header-height);
+    height: max-content;
 }
 
 /* Layout container */
@@ -516,6 +517,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     width: 180px;
+    min-width: 120px;
     text-align: center;
     margin: 8px 0;
     padding: 5px;
@@ -530,7 +532,7 @@ button:hover {
 .row-4 {padding-left: 0%;}
 .row-5 {padding-left: 15%; }
 .row-6 {padding-left: 30%;}
-.row-7 {padding-left: 0%; }
+.row-7 {padding-left: 0%; justify-content: space-between;}
 .row-8 {padding-left: 40%;}
 
 
@@ -587,7 +589,7 @@ button:hover {
 
 #replacements {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: space-between;
     align-items: center;
     width: 100%;   
@@ -638,6 +640,7 @@ button:hover {
     text-align: left;
     padding: 20px;
     margin-left: auto;
+    display: flex;
 }
 
 #actions button {
@@ -656,4 +659,21 @@ button:hover {
     background-color: var(--primary-color);
     color: var(--light-color);
     border-color: var(--light-color);
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 1200px) {
+
+    #actions {
+        flex-direction: column;
+    }
+
+    #replacements {
+        justify-content: space-evenly;
+    }
+
+    .replacements-row {
+        display: flex;
+        flex-direction: column;
+    }
 }
