@@ -5,25 +5,27 @@
     --dark-color: #333333;
     --green-color: rgb(20, 111, 20);
     --red-color: rgb(152, 21, 21);
-    --sidebar-width: 295px;
-    --sidebar-collapsed-width: 60px;
-    --header-height: 100px;
-    --player-width: 180px;
+    --sidebar-width: 20rem;
+    --sidebar-collapsed-width: 4rem;
+    --header-height: 7rem;
+    --player-width: 12rem;
 }
 
 body {
     font-family: 'Lato', 'Tahoma', sans-serif;
+    /* font-size: clamp(1rem, 2.5vw, 1.5rem); */
     background-color: var(--light-color);
     display: flex;
     justify-content: space-between;;
     padding: 20px;
     margin: 0;
+    overflow-x: hidden;
 }
 
 h1 {
     font-family: 'PT Sans Narrow', sans-serif;
     font-weight: 600;
-    font-size: 48px;
+    font-size: 3rem;
     margin: 0px 20px;
     color: whitesmoke
 }
@@ -37,11 +39,11 @@ h1 {
     align-items: center;
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    width: 100%;
+    /* width: max-content; */
     margin: 0px;
     margin-bottom: 10px;
     min-height: var(--header-height);
-    height: max-content;
+    height: fit-content;
 }
 
 #footer {
@@ -54,21 +56,67 @@ h1 {
     display: flex;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+/* Toggle button */
+#toggle-btn {
+    background-color: transparent;
+    color: var(--light-color);
+    margin-left: auto;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    opacity: 0.8;
+    font-size: 1.5rem;
+}
+#toggle-btn i {
+    font-size: 2rem;
+    color: var(--light-color);
+}
+
+#toggle-btn:hover {
+    background-color: whitesmoke;
+    color: var(--dark-color);
+    opacity: 0.5;
+}
+
+.content {
+    background-color: rgba(34, 139, 34, 0.5);
+    flex-grow: 1;
+    transition: margin-left 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-collapsed-width));
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;    
+    white-space: nowrap;
 }
 
 .content.sidebar-collapsed {
-    left: 0;
-    /* Adjust to account for button width when sidebar is collapsed */
+    left: var(--sidebar-collapsed-width);
 }
 
-/* Sidebar styles */
+img {
+    height: var(--header-height);
+    margin-left: 20px;
+}
+
+/* --------------- */
+/* SIDEBAR STYLING */
+/* --------------- */
+
 #sidebar {
-    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 295px;
+    align-items: stretch;
+    width: var(--sidebar-width);
     background-color: var(--dark-color);
     color: var(--light-color);
     padding: 10px;
@@ -91,78 +139,6 @@ h1 {
     display: none;
 }
 
-/* Toggle button */
-#toggle-btn {
-    background-color: transparent;
-    color: var(--light-color);
-    margin-left: auto;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease;
-    opacity: 0.8;
-    font-size: 24px;
-}
-#toggle-btn i {
-    font-size: 30px;
-    color: var(--light-color);
-}
-
-#toggle-btn:hover {
-    background-color: whitesmoke;
-    color: var(--dark-color);
-    opacity: 0.5;
-}
-
-.content {
-    background-color: rgba(34, 139, 34, 0.5);
-    flex-grow: 1;
-    overflow-y: auto;
-    transition: margin-left 0.3s ease;
-    position: fixed;
-    top: 0;
-    left: var(--sidebar-width);
-    width: calc(100% - var(--sidebar-width));
-    height: 100%;
-    min-width: 1000px;
-}
-
-.content.sidebar-collapsed {
-    left: var(--sidebar-collapsed-width);
-    /* Matches the collapsed sidebar width */
-    width: calc(100% - var(--sidebar-collapsed-width));
-    /* Adjust to avoid overflow */
-}
-
-img {
-    height: var(--header-height);
-    margin-left: 20px;
-}
-
-/* --------------- */
-/* SIDEBAR STYLING */
-/* --------------- */
-
-#sidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
-    width: 295px;
-    background-color: var(--dark-color);
-    color: var(--light-color);
-    padding: 10px;
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    z-index: 10;
-    transition: transform 0.3s ease;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
 .collapsible-section {
     background-color: rgba(black, 0);
     border: 1px solid var(--light-color);
@@ -181,7 +157,7 @@ img {
 .collapsible-content {
   display: none;
   padding: 10px;
-  max-height: 400px;
+  max-height: 25rem;
   overflow-y: auto;
 }
 
@@ -210,7 +186,7 @@ img {
 .collapsible-header {
     cursor: pointer;
     padding: 10px;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
     display: flex;
     justify-content: space-between;
@@ -228,7 +204,7 @@ img {
 }
 
 .player-count {
-    font-size: 20px;
+    font-size: 1.25rem;
     color: black;
     font-family: 'Lato', sans-serif;
     font-weight: 900;
@@ -264,7 +240,7 @@ img {
     align-items: center;
     padding: 0px;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 0.9rem;
     margin: 2px 0px;
     transition: background-color 0.3s ease;
     width: 100%;
@@ -282,7 +258,7 @@ img {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
+    font-size: 1.2rem;
     background-color: transparent;
     color: var(--light-color);
     border: none;
@@ -317,7 +293,7 @@ img {
     padding: 5px 10px;
     border: 2px solid var(--light-color);
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 1rem;
     cursor: pointer;
 }
 
@@ -327,7 +303,7 @@ img {
     border: 2px solid var(--light-color);
     border-radius: 5px;
     padding: 10px;
-    font-size: 18px;
+    font-size: 1.2rem;
     cursor: pointer;
     margin: 5px 0;
     margin-bottom: 10px;
@@ -355,7 +331,7 @@ img {
     color: black;
     padding: 10px 15px;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -434,8 +410,8 @@ img {
 }
 
 input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+    width: 1.2rem;
+    height: 1.2rem;
 }
 
 .checkbox-item input[type="checkbox"] {
@@ -447,14 +423,14 @@ input[type="checkbox"] {
 label {
     flex:2;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 1.2rem;
     text-align: left;
     margin-right: 10px;
 }
 
 .checkbox-item label {
     flex: none;
-    font-size: 16px;
+    font-size: 1.2rem;
     text-align: left;
     margin-bottom: auto;
 }
@@ -508,7 +484,7 @@ button:hover {
     flex-direction: column;
     gap: 0px;
     margin: 0px;
-    width: 100%;
+    /* width: 100%; */
 }
 
 /* General styles for rows */
@@ -516,6 +492,7 @@ button:hover {
     display: flex;
     gap: 5px;
     margin-top: -10px;
+    min-width: calc(var(--player-width) * 5);
 }
 
 /* General styles for position cells */
@@ -524,7 +501,7 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: var(--player-width);
+    width: var(--player-width);
     text-align: center;
     margin: 8px 0;
     padding: 5px;
@@ -551,7 +528,7 @@ button:hover {
     font-family: 'Lato', sans-serif;
     font-weight: 700;
     padding: 5px;
-    font-size: 18px;
+    font-size: 1.2rem;
     border: 1px solid var(--primary-color);
     border-radius: 5px;
     width: 100%;
@@ -576,14 +553,14 @@ button:hover {
 
 .position-number, .replacement-number {
     font-family: 'Oswald', sans-serif;
-    font-size: 36px;
+    font-size: 2.5rem;
     font-weight: 600;
     color: var(--primary-color);
 }
 
 .position-label {
     font-family: 'PT Sans Narrow', sans-serif;
-    font-size: 20px;
+    font-size: 1.5rem;
     color: var(--primary-color);
 }
 
@@ -609,7 +586,7 @@ button:hover {
 }
 
 .replacement-number {
-    font-size: 42px;
+    font-size: 2.5rem;
     color: var(--light-color);
     align-content: center;
 }
@@ -617,10 +594,10 @@ button:hover {
 .replacement-cell select {
     padding: 5px;
     margin: 15px;
-    font-size: 14px;
+    font-size: 0.8rem;
     border: 1px solid white;
     border-radius: 5px;
-    width: 160px;
+    width: 10rem;
     text-align: center;
     align-self: center;
     background-color: var(--light-color);
@@ -649,7 +626,7 @@ button:hover {
     padding: 10px 15px;
     border: 2px solid black;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -662,7 +639,7 @@ button:hover {
 }
 
 /* Adjustments for smaller screens */
-@media (max-width: 1200px) {
+/* @media (max-width: 1200px) {
 
     #actions {
         flex-direction: column;
@@ -685,4 +662,4 @@ button:hover {
         font-size: 18px;
     }
 
-}
+} */
