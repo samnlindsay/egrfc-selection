@@ -27,7 +27,7 @@ h1 {
     font-weight: 600;
     font-size: 3rem;
     margin: 0 calc(var(--padding-inc) * 2);
-    color: whitesmoke
+    color: whitesmoke;
 }
 
 /* ---------------- */
@@ -114,8 +114,8 @@ h1 {
 
 img {
     height: 100%;
-    max-height: calc(var(--header-height) * 1.75);
-    margin-left: 20px;
+    max-height: var(--header-height);
+    margin-left:calc(var(--padding-inc) * 1);
 }
 
 /* --------------- */
@@ -619,7 +619,7 @@ select {
 #actions {
     text-align: left;
     padding: calc(var(--padding-inc) * 2);
-    margin-left: auto;
+    /* margin-left: auto; */
     display: flex;
 }
 
@@ -646,10 +646,6 @@ select {
 
     :root {
         font-size: 8px;
-    }
-
-    h1 {
-        font-size: 4rem;
     }
 
     #header {
