@@ -252,7 +252,7 @@ img {
     padding: 0px;
     border-radius: 5px;
     font-size: 0.9rem;
-    margin: 2px 0px;
+    margin: 0.1rem 0px;
     transition: background-color 0.3s ease;
     width: 100%;
 }
@@ -275,7 +275,7 @@ img {
     border: none;
     cursor: pointer;
     margin: 0px;
-    margin-right: 5px;
+    margin-right: 0.3rem;
 }
 
 .player-info .icon:hover {
@@ -647,15 +647,24 @@ select {
 
     :root {
         font-size: 8px;
+        --sidebar-width: 22rem;
+    }
+
+    .player-info {
+        font-size: 1.2rem;
+        margin: 0;
+    }
+    .player-info .icon {
+        font-size: 1.5rem;
+    }
+    .player-info button{
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
     }
 
     #select-squad {
         margin-top: calc(var(--header-height)*2 + var(--padding-inc));
     }
-
-    /* #actions {
-        flex-direction: column;
-    } */
 
     #replacements {
         justify-content: space-evenly;
