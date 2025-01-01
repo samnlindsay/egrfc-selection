@@ -43,7 +43,6 @@ h1 {
     left:0;
     width: 100vw;
     margin-left: var(--sidebar-width);
-    height: var(--header-height);
 }
 
 .sidebar-collapsed #header, .sidebar-collapsed #footer {
@@ -52,12 +51,13 @@ h1 {
 
 #header {
     top: 0;
+    height: var(--header-height);
 }
 
 #footer {
     bottom: 0;
     margin-bottom: auto;
-    height: max-content;
+    height: min-content;
 }
 
 /* Layout container */
@@ -316,7 +316,7 @@ img {
     padding: 10px var(--padding-inc);
     font-size: 1.2rem;
     cursor: pointer;
-    margin: 10px 0;
+    margin: var(--padding-inc) 0;
 }
 
 #save-availability {
@@ -649,7 +649,7 @@ select {
     }
 
     #header {
-        height: calc(var(--header-height) * 2);
+        height: calc(var(--header-height) * 1.5);
     }  
     #select-squad {
         margin-top: calc(var(--header-height)*2 + var(--padding-inc));
@@ -665,11 +665,15 @@ select {
     #replacements {
         justify-content: space-evenly;
     }
+    .replacement-cell select {
+        margin: 5px calc(var(--padding-inc) * 1.5);
+    }
+
 
     .replacements-row {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 5px;
     }
 
     .position-label {
