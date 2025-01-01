@@ -9,6 +9,7 @@
     --sidebar-collapsed-width: 4rem;
     --header-height: 7rem;
     --player-width: 12rem;
+    --padding-inc: 0.75rem;
 }
 
 body {
@@ -26,7 +27,7 @@ h1 {
     font-family: 'PT Sans Narrow', sans-serif;
     font-weight: 600;
     font-size: 3rem;
-    margin: 0px 20px;
+    margin: 0 calc(var(--padding-inc) * 2);
     color: whitesmoke
 }
 
@@ -39,7 +40,8 @@ h1 {
     align-items: center;
     background-color: var(--primary-color);
     color: var(--secondary-color);
-    /* width: max-content; */
+     /* width of parent */
+    width: 100%;
     margin: 0px;
     margin-bottom: 10px;
     min-height: var(--header-height);
@@ -103,7 +105,8 @@ h1 {
 }
 
 img {
-    height: var(--header-height);
+    height: 95%;
+    max-height: 10rem;
     margin-left: 20px;
 }
 
@@ -119,7 +122,7 @@ img {
     width: var(--sidebar-width);
     background-color: var(--dark-color);
     color: var(--light-color);
-    padding: 10px;
+    padding: var(--padding-inc);
     position: fixed;
     left: 0;
     top: 0;
@@ -156,7 +159,7 @@ img {
 
 .collapsible-content {
   display: none;
-  padding: 10px;
+  padding: var(--padding-inc);
   max-height: 25rem;
   overflow-y: auto;
 }
@@ -185,7 +188,7 @@ img {
 
 .collapsible-header {
     cursor: pointer;
-    padding: 10px;
+    padding: var(--padding-inc);
     font-size: 1.5rem;
     font-weight: bold;
     display: flex;
@@ -195,7 +198,7 @@ img {
 
 .triangle-icon {
     display: inline-block;
-    margin-right: 10px;
+    margin-right: var(--padding-inc);
     transition: transform 0.3s ease;
 }
 
@@ -208,7 +211,7 @@ img {
     color: black;
     font-family: 'Lato', sans-serif;
     font-weight: 900;
-    margin-left: 10px;
+    margin-left: var(--padding-inc);
     background-color: var(--light-color);   
     padding: 5px;
     border-radius: 50%;
@@ -219,8 +222,8 @@ img {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: 10px;
-    overflow: hidden;
+    gap: var(--padding-inc);
+    overflow-x: hidden;
     overflow-y: auto;
 }
 
@@ -231,7 +234,7 @@ img {
     overflow-y: auto;
     background-color: none;
     border-radius: 5px;
-    padding: 5px;
+    padding: calc(var(--padding-inc) * 0.5);
 }
 
 .player-info {
@@ -290,7 +293,7 @@ img {
     background-color: var(--primary-color);
     color: var(--light-color);
     margin: 10px 0;
-    padding: 5px 10px;
+    padding: 5px var(--padding-inc);
     border: 2px solid var(--light-color);
     border-radius: 5px;
     font-size: 1rem;
@@ -302,11 +305,10 @@ img {
     color: var(--light-color);
     border: 2px solid var(--light-color);
     border-radius: 5px;
-    padding: 10px;
+    padding: 10px var(--padding-inc);
     font-size: 1.2rem;
     cursor: pointer;
-    margin: 5px 0;
-    margin-bottom: 10px;
+    margin: 10px 0;
 }
 
 #save-availability {
@@ -317,7 +319,7 @@ img {
 }
 
 #add-player-button{
-    padding: 5px;
+    padding: 5px calc(var(--padding-inc) * 0.5);
     margin-top: 0;
     width: 100%;
 }
@@ -329,7 +331,7 @@ img {
 
 #cancel-add-player, #save-player-button {
     color: black;
-    padding: 10px 15px;
+    padding: 10px calc(var(--padding-inc) * 1.5);
     border-radius: 5px;
     font-size: 0.9rem;
     font-weight: bold;
@@ -368,7 +370,7 @@ img {
 .modal-content {
     background: var(--primary-color);
     border: white 5px solid;
-    padding: 20px;
+    padding: calc(var(--padding-inc) * 2);
     border-radius: 8px;
     text-align: center;
     width: -content;
@@ -383,15 +385,15 @@ img {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    gap: 5px;
+    gap: calc(var(--padding-inc) * 0.5);
 }
 
 .modal-input {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 5px;
-    padding: 10px;
+    margin: calc(var(--padding-inc) * 0.5);
+    padding: var(--padding-inc);
     border: 1px solid #ccc9;
     border-radius: 5px;
 }
@@ -417,7 +419,7 @@ input[type="checkbox"] {
 .checkbox-item input[type="checkbox"] {
     cursor: pointer;
     margin: 0;
-    margin-right: 5px;
+    margin-right: calc(var(--padding-inc) * 0.5);
 }
 
 label {
@@ -425,7 +427,7 @@ label {
     font-weight: bold;
     font-size: 1.2rem;
     text-align: left;
-    margin-right: 10px;
+    margin-right: var(--padding-inc);
 }
 
 .checkbox-item label {
@@ -449,8 +451,8 @@ checkbox-group {
 .button-group {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
-    margin-top: 10px;
+    gap: var(--padding-inc);
+    margin-top: var(--padding-inc);
 }
 
 button {
@@ -475,7 +477,7 @@ button:hover {
 
 
 #select-squad {
-    margin: 20px;
+    margin: calc(var(--padding-inc) * 2);
 }
 
 /* Container for all rows */
@@ -490,7 +492,7 @@ button:hover {
 /* General styles for rows */
 .position-row {
     display: flex;
-    gap: 5px;
+    gap: calc(var(--padding-inc) * 0.5);
     margin-top: -10px;
     min-width: calc(var(--player-width) * 5);
 }
@@ -504,7 +506,7 @@ button:hover {
     width: var(--player-width);
     text-align: center;
     margin: 8px 0;
-    padding: 5px;
+    padding: calc(var(--padding-inc) * 0.5);
     border: 2px solid black;
     border-radius: 8px;
     background-color: rgba(255, 255, 255, 0.75);
@@ -524,10 +526,10 @@ button:hover {
     visibility: hidden;
 }
 
-.position-cell select {
+select {
     font-family: 'Lato', sans-serif;
     font-weight: 700;
-    padding: 5px;
+    padding: calc(var(--padding-inc) * 0.5);
     font-size: 1.2rem;
     border: 1px solid var(--primary-color);
     border-radius: 5px;
@@ -535,19 +537,32 @@ button:hover {
     text-align: center;
     background-color: var(--light-color);
 }
+.position-cell select {
+    margin: 0;
+    border-radius: 0;
+}
+.replacement-cell select {
+    margin: calc(var(--padding-inc) * 1.5);
+    border-color: white;
+}
 
 /* Style for select dropdown when a player is selected */
-.position-cell .select-selected {
+.select-selected {
     background-color: var(--primary-color);
     border: 1px solid rgba(255, 255, 255, 0);
-    color: white;
+    color: var(--light-color);
+    font-weight: bold;
+    border-color: var(--light-color);
+}
+.replacement-cell .select-selected {
+    background-color: black;
 }
 
 .position-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: var(--padding-inc);
     margin-top: auto;
 }
 
@@ -566,7 +581,6 @@ button:hover {
 
 #replacements {
     display: flex;
-    /* flex-direction: row; */
     justify-content: space-between;
     align-items: center;
     width: 100%;   
@@ -576,8 +590,8 @@ button:hover {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    gap: 16px;
-    margin-left: 20px;
+    gap: calc(var(--padding-inc) * 1.6);
+    margin-left: calc(var(--padding-inc) * 2);
 }
 
 .replacement-cell {
@@ -591,31 +605,12 @@ button:hover {
     align-content: center;
 }
 
-.replacement-cell select {
-    padding: 5px;
-    margin: 15px;
-    font-size: 0.8rem;
-    border: 1px solid white;
-    border-radius: 5px;
-    width: 10rem;
-    text-align: center;
-    align-self: center;
-    background-color: var(--light-color);
-}
-
-.replacement-cell .select-selected {
-    background-color: black;
-    border-color: var(--light-color);
-    color: var(--light-color);
-    font-weight: bold;
-}
-
 /* ---------------------- */ 
 /* ACTION BUTTONS STYLING */
 /* ---------------------- */
 #actions {
     text-align: left;
-    padding: 20px;
+    padding: calc(var(--padding-inc) * 2);
     margin-left: auto;
     display: flex;
 }
@@ -623,7 +618,7 @@ button:hover {
 #actions button {
     background-color: var(--light-color);
     color: var(--primary-color);
-    padding: 10px 15px;
+    padding: var(--padding-inc) calc(var(--padding-inc) * 1.5);
     border: 2px solid black;
     border-radius: 5px;
     font-size: 1.2rem;
@@ -639,8 +634,11 @@ button:hover {
 }
 
 /* Adjustments for smaller screens */
-/* @media (max-width: 1200px) {
+@media (max-width: 700px) {
 
+    html {
+        font-size: 10px;
+    }
     #actions {
         flex-direction: column;
     }
@@ -652,14 +650,14 @@ button:hover {
     .replacements-row {
         display: flex;
         flex-direction: column;
+        gap: 10px;
     }
 
     .position-label {
-        font-size: 28px;
+        font-size: 2rem;
     }
 
-    .position-cell select {
-        font-size: 18px;
+    #actions button {
+        font-size: 1.5rem;
     }
-
-} */
+}
