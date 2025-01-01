@@ -19,7 +19,6 @@ body {
     justify-content: space-between;;
     padding: 20px;
     margin: 0;
-    overflow-x: auto;
 }
 
 h1 {
@@ -57,7 +56,7 @@ h1 {
 #footer {
     bottom: 0;
     margin-bottom: auto;
-    height: min-content;
+    /* height: max-content; */
 }
 
 /* Layout container */
@@ -66,7 +65,6 @@ h1 {
     width: 100%;
     height: 100vh;
     overflow-y: hidden;
-    overflow-x: auto;
 }
 
 /* Toggle button */
@@ -101,7 +99,9 @@ h1 {
     top: 0;
     left: 0;
     margin-left: var(--sidebar-width);
-    width: 100vw;
+    margin-right: var(--sidebar-collapsed-width);
+    width: min-content  ;
+    max-width: 100vw;
     height: 100%;
     overflow-x: auto;
     overflow-y: hidden;    
@@ -547,7 +547,7 @@ select {
 }
 .position-cell select {
     margin: 0;
-    border-radius: 0;
+    border-radius: 5px;
 }
 .replacement-cell select {
     margin: calc(var(--padding-inc) * 1.5);
@@ -619,7 +619,8 @@ select {
 #actions {
     text-align: left;
     padding: calc(var(--padding-inc) * 2);
-    /* margin-left: auto; */
+    margin-left: auto;
+    margin-right: var(--sidebar-collapsed-width);
     display: flex;
 }
 
@@ -642,22 +643,19 @@ select {
 }
 
 /* Adjustments for smaller screens */
-@media (max-width: 700px) {
+@media (max-width: 1024px) {
 
     :root {
         font-size: 8px;
     }
 
-    #header {
-        height: calc(var(--header-height) * 1.5);
-    }  
     #select-squad {
         margin-top: calc(var(--header-height)*2 + var(--padding-inc));
     }
 
-    #actions {
+    /* #actions {
         flex-direction: column;
-    }
+    } */
 
     #replacements {
         justify-content: space-evenly;
@@ -665,7 +663,6 @@ select {
     .replacement-cell select {
         margin: 5px calc(var(--padding-inc) * 1.5);
     }
-
 
     .replacements-row {
         display: flex;
