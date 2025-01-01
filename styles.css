@@ -43,17 +43,19 @@ h1 {
     left:0;
     width: 100vw;
     margin-left: var(--sidebar-width);
-    /* margin: 0px; */
-    /* margin-bottom: 10px; */
-    min-height: var(--header-height);
-    height: fit-content;
+    height: var(--header-height);
 }
 
 .sidebar-collapsed #header, .sidebar-collapsed #footer {
     margin-left: var(--sidebar-collapsed-width);
 }
 
+#header {
+    top: 0;
+}
+
 #footer {
+    bottom: 0;
     margin-bottom: auto;
     height: max-content;
 }
@@ -111,8 +113,8 @@ h1 {
 }
 
 img {
-    height: 95%;
-    max-height: 10rem;
+    height: 100%;
+    max-height: calc(var(--header-height) * 1.75);
     margin-left: 20px;
 }
 
@@ -481,9 +483,9 @@ button:hover {
 /* MAIN BODY STYLING */
 /* ----------------- */
 
-
 #select-squad {
     margin: calc(var(--padding-inc) * 2);
+    margin-top: calc(var(--header-height) + var(--padding-inc));
 }
 
 /* Container for all rows */
@@ -642,6 +644,17 @@ select {
 /* Adjustments for smaller screens */
 @media (max-width: 700px) {
 
+    h1 {
+        font-size: 4rem;
+    }
+
+    #header {
+        height: calc(var(--header-height) * 2);
+    }  
+    #select-squad {
+        margin-top: calc(var(--header-height)*2 + var(--padding-inc));
+    }
+
     html {
         font-size: 10px;
     }
@@ -661,9 +674,5 @@ select {
 
     .position-label {
         font-size: 2rem;
-    }
-
-    #actions button {
-        font-size: 1.5rem;
     }
 }
