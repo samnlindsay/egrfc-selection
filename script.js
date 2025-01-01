@@ -1,20 +1,92 @@
+const SPREADSHEET_ID = "17e7u8PdfKOQuH0-c7Do6umvvOUh4uxN5NX_M-8Mh4zI";
+const API_KEY = "AIzaSyCv-2BReCq8s2hHqgwbD4WxiTmE0vFCy9E";
+
+// Function to fetch data from Google Sheets
+async function fetchPlayersData() {
+  const range = "Players!A1:D"; // Update 'Sheet1' to your sheet name
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${range}?key=${API_KEY}`;
+
+  console.log("Fetching data from URL:", url);
+
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("API Error:", errorData);
+      throw new Error(errorData.error.message);
+    }
+
+    const data = await response.json();
+    console.log("Raw data:", data);
+
+    if (!data.values || data.values.length === 0) {
+      console.error("No data returned from Google Sheets.");
+      return [];
+    }
+
+    // Convert rows into player objects
+    const players = data.values.slice(1).map((row) => ({
+      name: row[0] || null,
+      position: row[1] ? row[1].split(",") : [],
+      available: row[2] === "Y" ? true : row[2] === "N" ? false : null,
+      selected: row[3] ? parseInt(row[3], 10) : null,
+    }));
+
+    console.log("Parsed players:", players);
+    return players;
+  } catch (error) {
+    console.error("Error fetching data from Google Sheets:", error);
+    return [];
+  }
+}
+
+async function updatePlayerData(rowIndex, updatedPlayer) {
+  const range = `Players!A${rowIndex}:D${rowIndex}`; // Update the correct range for the player row
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${range}?valueInputOption=RAW&key=${API_KEY}`;
+
+  const updatedValues = [
+    [
+      updatedPlayer.name,
+      updatedPlayer.position.join(","),
+      updatedPlayer.availabile,
+      updatedPlayer.selected,
+    ],
+  ];
+
+  try {
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ values: updatedValues }),
+    });
+
+    if (response.ok) {
+      console.log("Player data updated successfully");
+    } else {
+      console.error("Failed to update player data:", await response.json());
+    }
+  } catch (error) {
+    console.error("Error updating data in Google Sheets:", error);
+  }
+}
+
 let players = [];
 let playerAvailability = {};
 let selectedPlayers = {}; // To track selected players for each position
 
 const positionMapping = {
-  "Prop": [1, 3], // Player numbers 1 and 3 are both Props
-  "Hooker": [2], // Player number 2 is Hooker
+  Prop: [1, 3], // Player numbers 1 and 3 are both Props
+  Hooker: [2], // Player number 2 is Hooker
   "Second Row": [4, 5], // Player numbers 4 and 5 are Second Rows
-  "Flanker": [6, 7], // Player numbers 6 and 7 are Flankers
+  Flanker: [6, 7], // Player numbers 6 and 7 are Flankers
   "Number 8": [8], // Player number 8 is Number 8
   "Scrum Half": [9], // Player number 9 is Scrum Half
   "Fly Half": [10], // Player number 10 is Fly Half
-  "Wing": [11, 14], // Player numbers 11 and 14 are Wings
-  "Centre": [12, 13], // Player numbers 12 and 13 are Centres
+  Wing: [11, 14], // Player numbers 11 and 14 are Wings
+  Centre: [12, 13], // Player numbers 12 and 13 are Centres
   "Full Back": [15], // Player number 15 is Full Back
 };
-
 
 // Load players from the JSON file
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,27 +99,25 @@ document.addEventListener("DOMContentLoaded", () => {
     .getElementById("mark-all-available")
     .addEventListener("click", markAllAvailable);
 
-  document
-    .getElementById("add-player-button")
-    .addEventListener("click", () => {
-      document.getElementById("add-player-modal").classList.remove("hidden");
-    });
+  document.getElementById("add-player-button").addEventListener("click", () => {
+    document.getElementById("add-player-modal").classList.remove("hidden");
+  });
 
-  document
-    .getElementById("cancel-add-player")
-    .addEventListener("click", () => {
-      document.getElementById("add-player-modal").classList.add("hidden");
-    });
+  document.getElementById("cancel-add-player").addEventListener("click", () => {
+    document.getElementById("add-player-modal").classList.add("hidden");
+  });
 
   document
     .getElementById("save-player-button")
     .addEventListener("click", () => {
       const playerName = document.getElementById("player-name").value;
-      
+
       // Extract player positions from checkbox values
       const playerPositions = Array.from(
         // Get all checkboxes that are checked with ids beginning with "position-"
-        document.querySelectorAll('input[type="checkbox"]:checked[id^="position-"]')
+        document.querySelectorAll(
+          'input[type="checkbox"]:checked[id^="position-"]'
+        )
       ).map((checkbox) => checkbox.value);
 
       const playerAvailability = document.getElementById(
@@ -110,25 +180,20 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    document
-      .getElementById("position-select")
-      .addEventListener("change", (event) => {
-        const target = event.target;
-        if (target.tagName === "SELECT") {
-          const position = target.id.replace("select-position-", ""); // Extract position name
-          const playerIndex = target.value; // Get selected player index
-          selectedPlayers[position] = playerIndex; // Update selectedPlayers
-        }
-      });
+  document
+    .getElementById("position-select")
+    .addEventListener("change", (event) => {
+      const target = event.target;
+      if (target.tagName === "SELECT") {
+        const position = target.id.replace("select-position-", ""); // Extract position name
+        const playerIndex = target.value; // Get selected player index
+        selectedPlayers[position] = playerIndex; // Update selectedPlayers
+      }
+    });
 
-    document
-      .querySelectorAll(".select-selected")
-      .forEach((dropdown, index) => {
-        dropdown.addEventListener("change", () =>
-          handlePlayerSelection(index + 1)
-        );
-      });
-
+  document.querySelectorAll(".select-selected").forEach((dropdown, index) => {
+    dropdown.addEventListener("change", () => handlePlayerSelection(index + 1));
+  });
 });
 
 const sidebar = document.getElementById("sidebar");
@@ -138,16 +203,15 @@ const content = document.getElementById("content");
 toggleBtn.addEventListener("click", () => {
   sidebar.classList.toggle("collapsed");
   content.classList.toggle("sidebar-collapsed");
-  
+
   // Update the toggle button's arrow direction
   if (sidebar.classList.contains("collapsed")) {
     toggleBtn.innerHTML = "<i class='fa-solid fa-bars'></i>";
   } else {
     toggleBtn.innerHTML =
-      '<span style="margin: 10px;">Show / Hide</span><i class="fa-solid fa-bars"></i>'; 
+      '<span style="margin: 10px;">Show / Hide</span><i class="fa-solid fa-bars"></i>';
   }
 });
-
 
 // Edit player name and positions (display current name/positions as default)
 function editPlayer(index) {
@@ -173,22 +237,23 @@ function editPlayer(index) {
 // Function to toggle the visibility of each section
 function toggleSection(sectionId) {
   var section = document.getElementById(sectionId);
-  var triangleIcon = section.previousElementSibling.querySelector('.triangle-icon');
-  var sectionContainer = section.closest('.collapsible-section');
+  var triangleIcon =
+    section.previousElementSibling.querySelector(".triangle-icon");
+  var sectionContainer = section.closest(".collapsible-section");
 
   // Toggle visibility of the section
   if (section.style.display === "none" || section.style.display === "") {
     section.style.display = "block";
-    triangleIcon.classList.add('rotate');
-    
+    triangleIcon.classList.add("rotate");
+
     // If expanded, adjust the height of the sections
-    sectionContainer.classList.add('expanded');
+    sectionContainer.classList.add("expanded");
   } else {
     section.style.display = "none";
-    triangleIcon.classList.remove('rotate');
-    
+    triangleIcon.classList.remove("rotate");
+
     // Collapse the section
-    sectionContainer.classList.remove('expanded');
+    sectionContainer.classList.remove("expanded");
   }
 }
 
@@ -201,36 +266,40 @@ function adjustSidebarHeight() {
   var sections = sidebar.querySelectorAll(".collapsible-section");
 
   // Reset all sections to default height
-  sections.forEach(function(section) {
-    section.style.flexGrow = '0';
+  sections.forEach(function (section) {
+    section.style.flexGrow = "0";
   });
 
   // Calculate the total number of expanded sections
-  var expandedSections = sidebar.querySelectorAll(".collapsible-section.expanded");
+  var expandedSections = sidebar.querySelectorAll(
+    ".collapsible-section.expanded"
+  );
 
   // If no sections are expanded, make one grow to fill the sidebar
   if (expandedSections.length === 0) {
-    sections[0].style.flexGrow = '1'; // Make the first section expand by default
+    sections[0].style.flexGrow = "1"; // Make the first section expand by default
   } else {
     // Distribute remaining space among expanded sections
     var spacePerSection = 100 / expandedSections.length;
-    expandedSections.forEach(function(expandedSection) {
+    expandedSections.forEach(function (expandedSection) {
       expandedSection.style.flexGrow = spacePerSection;
     });
   }
 }
 
-
-
 // Load players from the JSON file
 function loadPlayers() {
-  fetch("players.json")
-    .then((response) => response.json())
+  fetchPlayersData()
     .then((data) => {
       players = data;
+
+      // Ensure each player has a `selected` property initialized
       players.forEach((player) => {
-        player.selected = null; // Initialize selected property
+        if (player.selected === undefined) {
+          player.selected = null;
+        }
       });
+
       initializePlayerAvailability();
       renderPlayerList();
       renderPositionSelect(); // Call to render the dropdowns for positions
@@ -239,6 +308,7 @@ function loadPlayers() {
       console.error("Error loading players:", error);
     });
 }
+
 
 function initializePlayerAvailability() {
   players.forEach((player, index) => {
@@ -432,11 +502,9 @@ function renderPositionSelect() {
   replacementsSelectDiv.appendChild(replacementsDiv);
 }
 
-
-
 function renderPlayerList() {
   // Sort players alphabetically by name
-  players.sort((a, b) => a.name.localeCompare(b.name));
+  players.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
 
   const availablePlayersDiv = document.getElementById("available");
   const unavailablePlayersDiv = document.getElementById("unavailable");
@@ -450,9 +518,9 @@ function renderPlayerList() {
   let unavailablePlayers = 0;
   let notRespondedPlayers = 0;
 
-  availableCount = document.getElementById("available-count");
-  unavailableCount = document.getElementById("unavailable-count");
-  notRespondedCount = document.getElementById("not-responded-count");
+  const availableCount = document.getElementById("available-count");
+  const unavailableCount = document.getElementById("unavailable-count");
+  const notRespondedCount = document.getElementById("not-responded-count");
 
   players.forEach((player, index) => {
     const playerDiv = document.createElement("div");
@@ -464,11 +532,13 @@ function renderPlayerList() {
     const yes = `<button class="icon icon-check" title="Mark available" onclick="toggleAvailability(${index}, true)"><i class="fas fa-check"></i></button>`;
     const clear = `<button class="icon icon-trash" title="Clear availability" onclick="toggleAvailability(${index}, null)"><i class="fas fa-trash"></i></button>`;
 
+    const playerName = player.name || "Unknown Player";
+
     playerDiv.innerHTML = `
         <button class="icon icon-edit" title="Edit player info" onclick="editPlayer(${index})">
             <i class="fas fa-pencil-alt"></i>
         </button>
-        <span class="player-name">${player.name}</span>
+        <span class="player-name">${playerName}</span>
         ${player.available === null ? yes : player.available ? no : yes}
         ${player.available === null ? no : clear}
     `;
@@ -484,15 +554,15 @@ function renderPlayerList() {
       unavailablePlayers++;
     }
   });
+
   availableCount.innerText = `${availablePlayers}`;
   unavailableCount.innerText = `${unavailablePlayers}`;
-  notRespondedCount.innerText = `${notRespondedPlayers}`; 
+  notRespondedCount.innerText = `${notRespondedPlayers}`;
 }
 
+
 function updateDropdownOptions(positionNumber) {
-  const dropdown = document.getElementById(
-    `select-position-${positionNumber}`
-  );
+  const dropdown = document.getElementById(`select-position-${positionNumber}`);
   dropdown.innerHTML = ""; // Clear existing options
 
   players.forEach((player) => {
@@ -529,7 +599,6 @@ function handlePlayerSelection(positionNumber) {
   renderPositionSelect();
 }
 
-
 // Toggle player availability and persist dropdown selections
 function toggleAvailability(index, available) {
   playerAvailability[index] = available; // Toggle to available
@@ -546,11 +615,9 @@ function toggleAvailability(index, available) {
   renderPositionSelect();
 }
 
-
 function markAllAvailable() {
   console.log("Marking all players as available...");
   players.forEach((_, index) => {
-    
     if (players[index].available === null) {
       toggleAvailability(index, true);
     }
@@ -560,7 +627,7 @@ function markAllAvailable() {
 }
 
 // Function to clear all players' availability (set to null)
-document.getElementById("clear-all").addEventListener("click", function() {
+document.getElementById("clear-all").addEventListener("click", function () {
   // Loop through all players and set their availability to null (not responded)
   players.forEach((player, index) => {
     playerAvailability[index] = null;
@@ -577,9 +644,9 @@ function updatePlayerList() {
   const notRespondedList = document.getElementById("not-responded");
 
   // Clear current lists
-  availableList.innerHTML = '';
-  unavailableList.innerHTML = '';
-  notRespondedList.innerHTML = '';
+  availableList.innerHTML = "";
+  unavailableList.innerHTML = "";
+  notRespondedList.innerHTML = "";
 
   let availablePlayers = 0;
   let unavailablePlayers = 0;
@@ -605,7 +672,6 @@ function updatePlayerList() {
   notRespondedCount.innerText = `(${notRespondedPlayers})`;
 }
 
-
 function saveAvailabilityToFile() {
   const updatedPlayers = players.map((player, index) => ({
     ...player,
@@ -625,8 +691,6 @@ function saveAvailabilityToFile() {
 
   alert("Availability saved to players.json!");
 }
-
-
 
 function saveSelectionToFile() {
   let teamSheet = generateTeamSheet();
@@ -649,7 +713,6 @@ function clearSelections() {
   players.forEach((player) => (player.selected = null)); // Reset selected property
   renderPositionSelect();
 }
-
 
 function copyToClipboard() {
   let teamSheet = generateTeamSheet();
@@ -687,3 +750,5 @@ function generateTeamSheet() {
 
   return teamSheet.trim(); // Ensure no trailing newline
 }
+
+loadPlayers();
