@@ -644,8 +644,8 @@ select {
 /* Adjustments for smaller screens */
 @media (max-width: 700px) {
 
-    html {
-        font-size: 7px;
+    :root {
+        font-size: 8px;
     }
 
     h1 {
