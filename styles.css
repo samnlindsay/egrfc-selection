@@ -12,13 +12,15 @@
     --padding-inc: 0.75rem;
 }
 
-body {
+body, html {
     font-family: 'Lato', 'Tahoma', sans-serif;
     background-color: var(--light-color);
     display: flex;
     justify-content: space-between;;
     padding: 20px;
     margin: 0;
+    height: 100%;
+    overflow: hidden;
 }
 
 h1 {
@@ -46,7 +48,7 @@ h1 {
     display: flex;
     width: 100%;
     height: 100vh;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 /* Toggle button */
@@ -82,11 +84,10 @@ h1 {
     left: 0;
     margin-left: var(--sidebar-width);
     margin-right: var(--sidebar-collapsed-width);
-    width: min-content  ;
+    width: min-content;
     max-width: 100vw;
     height: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;    
+    overflow: scroll;    
     white-space: nowrap;
 }
 
@@ -457,14 +458,6 @@ button:hover {
 /* ----------------- */
 /* MAIN BODY STYLING */
 /* ----------------- */
-
-/* Ensure the parent container is a flex container */
-.main-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    overflow: hidden;
-}
 
 /* Make select-squad and footer scrollable together */
 .select-squad-container {
