@@ -1,6 +1,70 @@
 const SPREADSHEET_ID = "17e7u8PdfKOQuH0-c7Do6umvvOUh4uxN5NX_M-8Mh4zI";
 const API_KEY = "AIzaSyCv-2BReCq8s2hHqgwbD4WxiTmE0vFCy9E";
 
+// Define your OAuth 2.0 Client ID
+const CLIENT_ID ="380362460892-7nhlgol4v6v96pcjom4nagfa72h8ut4g.apps.googleusercontent.com";
+const SCOPES = "https://www.googleapis.com/auth/spreadsheets"; // OAuth scope for write access
+
+// Load the Google API client library
+function loadClient() {
+  gapi.client.init({
+    apiKey: API_KEY,
+    clientId: CLIENT_ID,
+    scope: SCOPES,
+  }).then(() => {
+    // Check if the user is authorized
+    gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+    updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+  });
+}
+
+// Update the sign-in status
+function updateSigninStatus(isSignedIn) {
+  if (isSignedIn) {
+    console.log("User is signed in");
+  } else {
+    console.log("User is not signed in");
+    gapi.auth2.getAuthInstance().signIn();
+  }
+}
+
+// Load the Google API client
+gapi.load("client:auth2", loadClient);
+
+function handleAuthClick() {
+  gapi.auth2.getAuthInstance().signIn();
+}
+
+function updateSheet() {
+    // Prepare data to overwrite
+    const values = players.map((player) => [
+      player.name,
+      player.position.join(","),
+      player.available === true ? "Y" : player.available === false ? "N" : "",
+      player.selected !== null ? player.selected : "",
+    ]);
+
+    // Include headers (optional)
+    values.unshift(["Name", "Position", "Available", "Selected"]);
+
+  const resource = { values };
+
+  gapi.client.sheets.spreadsheets.values
+    .update({
+      spreadsheetId: SPREADSHEET_ID,
+      range: "Players!A1:D",
+      valueInputOption: "USER_ENTERED",
+      resource: resource,
+    })
+    .then((response) => {
+      console.log("Update response:", response);
+    })
+    .catch((error) => {
+      console.error("Error updating sheet:", error);
+    });
+}
+
+
 // Function to fetch data from Google Sheets
 async function fetchPlayersData() {
   const range = "Players!A1:D"; // Update 'Sheet1' to your sheet name
@@ -91,9 +155,6 @@ const positionMapping = {
 // Load players from the JSON file
 document.addEventListener("DOMContentLoaded", () => {
   loadPlayers();
-  document
-    .getElementById("save-availability")
-    .addEventListener("click", saveAvailabilityToFile);
 
   document
     .getElementById("mark-all-available")
@@ -275,6 +336,14 @@ function resetModal() {
   document.getElementById("player-positions").value = "";
   document.getElementById("player-availability").value = "";
 }
+
+// Attach to Save buttons
+document
+  .getElementById("save-availability")
+  .addEventListener("click", updateSheet);
+document
+  .getElementById("save-selection")
+  .addEventListener("click", updateSheet);
 
 
 // Function to toggle the visibility of each section
