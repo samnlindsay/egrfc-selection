@@ -26,8 +26,11 @@
                 <i class="fa-solid fa-bars"></i>
             </button>
             <div class="sidebar-content">
+                <p>Data loaded from Google Sheets.</p>  
+                <p>To make <strong>permanent</strong> changes to squad and availability, please <a href="https://docs.google.com/spreadsheets/d/17e7u8PdfKOQuH0-c7Do6umvvOUh4uxN5NX_M-8Mh4zI/edit?usp=sharing"
+                    target="_blank">edit the Google Sheet</a>.</p>
                 <div class="button-group">
-                    <button id="save-availability">Save Availability</button>
+                    <button id="save-availability" disabled>Save Availability</button>
                     <button id="clear-all">Clear All</button>
                 </div>
                 <button id="add-player-button">Add New Player</button>
@@ -158,7 +161,7 @@
                     <h1>Starting XV</h1>
                     <div id="actions">
                         <button id="clear-selections">Clear</button>
-                        <button id="save-selection">Save</button>
+                        <button id="save-selection" disabled>Save</button>
                         <button id="copy-to-clipboard">Copy</button>
                     </div>
                 </div>
