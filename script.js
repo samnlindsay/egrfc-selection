@@ -2,7 +2,7 @@ const SPREADSHEET_ID = "17e7u8PdfKOQuH0-c7Do6umvvOUh4uxN5NX_M-8Mh4zI";
 const API_KEY = "AIzaSyCv-2BReCq8s2hHqgwbD4WxiTmE0vFCy9E";
 
 // Define your OAuth 2.0 Client ID
-const CLIENT_ID ="380362460892-7nhlgol4v6v96pcjom4nagfa72h8ut4g.apps.googleusercontent.com";
+const CLIENT_ID = "501690914815-gqrg7ggqo1voedobne3ttmpohihi9gu5.apps.googleusercontent.com";
 const SCOPES = "https://www.googleapis.com/auth/spreadsheets"; // OAuth scope for write access
 
 // Load the Google API client library
