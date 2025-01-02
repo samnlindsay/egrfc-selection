@@ -32,15 +32,17 @@
                 <div id="add-player-modal" class="modal hidden">
                     <!-- Modal for adding new player -->
                     <div class="modal-content">
-                        <h2 style="margin-bottom:30px">Add New Player</h2>
+                        <h2 style="margin-bottom:30px">Add / Edit Player</h2>
+                    
                         <!-- Name -->
-                        <div class="modal-input">
-                            <label for="player-name">Name:</label>
+                        <fieldset>
+                            <legend>Name</legend>
                             <input type="text" id="player-name" />
-                        </div>
+                        </fieldset>
+                    
                         <!-- Position -->
-                        <div class="modal-input">
-                            <label for="player-positions">Position:</label>
+                        <fieldset>
+                            <legend>Positions</legend>
                             <div id="player-positions">
                                 <div class="checkbox-column">
                                     <div class="checkbox-item">
@@ -52,7 +54,7 @@
                                         <label for="position-hooker">Hooker</label>
                                     </div>
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="position-lock" value="Lock">
+                                        <input type="checkbox" id="position-lock" value="Second Row">
                                         <label for="position-lock">Second Row</label>
                                     </div>
                                     <div class="checkbox-item">
@@ -66,11 +68,11 @@
                                 </div>
                                 <div class="checkbox-column">
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="position-scrumhalf" value="Scrumhalf">
+                                        <input type="checkbox" id="position-scrumhalf" value="Scrum Half">
                                         <label for="position-scrumhalf">Scrum Half</label>
                                     </div>
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="position-flyhalf" value="Flyhalf">
+                                        <input type="checkbox" id="position-flyhalf" value="Fly Half">
                                         <label for="position-flyhalf">Fly Half</label>
                                     </div>
                                     <div class="checkbox-item">
@@ -82,23 +84,26 @@
                                         <label for="position-wing">Wing</label>
                                     </div>
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="position-fullback" value="Fullback">
+                                        <input type="checkbox" id="position-fullback" value="Full Back">
                                         <label for="position-fullback">Full Back</label>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </fieldset>
+                    
                         <!-- Availability -->
-                        <div class="modal-input">
-                            <label for="player-availability">Available:</label>
+                        <fieldset>
+                            <legend>Available?</legend>
                             <input type="checkbox" id="player-availability" />
-                        </div>
+                        </fieldset>
+                    
                         <!-- Buttons -->
                         <div class="button-group">
                             <button id="save-player-button">Save</button>
                             <button id="cancel-add-player">Cancel</button>
                         </div>
                     </div>
+
                 </div>
 
                 <div id="player-container">

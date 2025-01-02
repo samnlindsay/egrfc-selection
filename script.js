@@ -213,26 +213,69 @@ toggleBtn.addEventListener("click", () => {
   }
 });
 
-// Edit player name and positions (display current name/positions as default)
-function editPlayer(index) {
-  const player = players[index];
-  const updatedName = prompt("Enter player name:", player.name);
-  const updatedPositions = prompt(
-    "Enter player positions (comma-separated):",
-    player.position.join(", ")
+function editPlayer(playerIndex) {
+  const player = players[playerIndex];
+
+  document.getElementById("add-player-modal").classList.remove("hidden");
+
+  // Populate modal fields with the selected player's data
+  document.getElementById("player-name").value = player.name || "";
+
+  // Update checkboxes for positions
+  const positionCheckboxes = document.querySelectorAll(
+    "#player-positions input[type='checkbox']"
   );
+  positionCheckboxes.forEach((checkbox) => {
+    checkbox.checked = player.position.includes(checkbox.value);
+  });
 
-  if (updatedName !== null && updatedPositions !== null) {
-    players[index] = {
-      ...player,
-      name: updatedName,
-      position: updatedPositions.split(",").map((pos) => pos.trim()),
-    };
+  // Update availability checkbox
+  document.getElementById("player-availability").checked =
+    player.available === true;
 
+  // Update the save button to apply changes to the existing player
+  const saveButton = document.getElementById("save-player-button");
+  saveButton.onclick = function () {
+    // Update player data with modal inputs
+    player.name = document.getElementById("player-name").value;
+
+    // Gather selected positions from checkboxes
+    player.positions = Array.from(
+      document.querySelectorAll(
+        "#player-positions input[type='checkbox']:checked"
+      )
+    ).map((checkbox) => checkbox.value);
+
+    // Update availability
+    player.available = document.getElementById("player-availability").checked;
+
+    // Re-render the player list and close the modal
     renderPlayerList();
     renderPositionSelect();
-  }
+    resetModal();
+
+
+    saveButton.onclick = null;
+  };
+
+  // Update the cancel button to close the modal
+  const cancelButton = document.getElementById("cancel-add-player");
+  cancelButton.onclick = function () {
+    document.getElementById("add-player-modal").classList.add("hidden");
+    resetModal();
+    cancelButton.onclick = null;
+  };
 }
+
+
+
+
+function resetModal() {
+  document.getElementById("player-name").value = "";
+  document.getElementById("player-positions").value = "";
+  document.getElementById("player-availability").value = "";
+}
+
 
 // Function to toggle the visibility of each section
 function toggleSection(sectionId) {

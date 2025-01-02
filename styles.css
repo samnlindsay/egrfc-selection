@@ -384,8 +384,11 @@ img {
     width: -content;
 }
 
-.modal-content div {
-    display: flex;
+legend {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--light-color);
+    text-align: left;
 }
 
 #player-positions {
@@ -406,12 +409,6 @@ img {
     border-radius: 5px;
 }
 
-.modal-content select {
-    flex: 1;
-}
-.modal-input input {
-    flex: 7;
-}
 
 .checkbox-item {
     display: flex;
@@ -430,12 +427,8 @@ input[type="checkbox"] {
     margin-right: calc(var(--padding-inc) * 0.5);
 }
 
-label {
-    flex:2;
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-align: left;
-    margin-right: var(--padding-inc);
+input[type="text"] {
+    width: 100%;
 }
 
 .checkbox-item label {
@@ -550,7 +543,7 @@ select {
     border-radius: 5px;
 }
 .replacement-cell select {
-    margin: calc(var(--padding-inc) * 1.5);
+    margin: calc(var(--padding-inc) * 0.5);
     border-color: white;
 }
 
@@ -589,17 +582,18 @@ select {
 
 #replacements {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    width: 100%;   
 }
 
 .replacements-row {
     display: flex;
-    justify-content: space-evenly;
     align-items: center;
     gap: calc(var(--padding-inc) * 1.6);
     margin-left: calc(var(--padding-inc) * 2);
+    margin-right: auto;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .replacement-cell {
@@ -619,7 +613,7 @@ select {
 #actions {
     text-align: left;
     padding: calc(var(--padding-inc) * 2);
-    margin-left: auto;
+    /* margin-left: auto; */
     margin-right: var(--sidebar-collapsed-width);
     display: flex;
 }
